@@ -20,7 +20,11 @@ export default function Template({
             fluid={data.kenImage.childImageSharp.fluid}
             title={`Photo by Ken Treloar on Unsplash`}
             />
-            <img src={frontmatter.thumbnail.childImageSharp.resize.src} alt={frontmatter.thumbnailAlt} />
+        <Img
+            fluid={frontmatter.thumbnail.childImageSharp.fluid}
+            title={`Photo by Ken Treloar on Unsplash`}
+            />
+            {/* <img src={frontmatter.thumbnail.childImageSharp.resize.src} alt={frontmatter.thumbnailAlt} /> */}
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: html }}
@@ -40,9 +44,9 @@ export const pageQuery = graphql`
         title
         thumbnail {
             childImageSharp {
-              resize(width: 200) {
-                src
-              }
+                fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid
+                  }
             }
           }
         thumbnailAlt

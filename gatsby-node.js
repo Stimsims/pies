@@ -9,9 +9,14 @@
 
 
 const path = require('path');
-
+const { fmImagesToRelative } = require('gatsby-remark-relative-images-v2');
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
+
+// exports.onCreateNode = ({ node }) => {
+//     fmImagesToRelative(node);
+//   };
+
 exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions
   
@@ -41,7 +46,9 @@ exports.createPages = ({ graphql, actions }) => {
   
           // Create pages for each markdown file.
           result.data.allMarkdownRemark.edges.forEach(({ node }) => {
+            
             const path = node.frontmatter.path;
+            
             createPage({
               path,
               component: blogPostTemplate,

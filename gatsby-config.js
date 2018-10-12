@@ -6,6 +6,13 @@ module.exports = {
     myRandomProp: 'has been retrieved'
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-netlify-cms-paths`,
+      options: {
+        // Path to your Netlify CMS config file
+        cmsConfig: `/static/admin/config.yml`
+      }
+    },
     'gatsby-plugin-react-helmet',
     `gatsby-transformer-sharp`,
     {
@@ -15,11 +22,25 @@ module.exports = {
         path: `${__dirname}/src/`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `src`,
+        path: `${__dirname}/static/images`,
+      },
+    },
     `gatsby-plugin-sharp`,
     {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          {
+            resolve: `gatsby-plugin-netlify-cms-paths`,
+            options: {
+              // Path to your Netlify CMS config file
+              cmsConfig: `/static/admin/config.yml`,
+            }
+          },
           `gatsby-plugin-sharp`,
           {
             resolve: `gatsby-remark-images`,

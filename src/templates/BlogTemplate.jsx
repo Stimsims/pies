@@ -1,5 +1,6 @@
 import React from "react"
 import { graphql } from "gatsby"
+import Img from "gatsby-image";
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -14,7 +15,12 @@ export default function Template({
         <p>{frontmatter.date}</p>
         <p>{frontmatter.ingredients.join()}</p>
         <p>calories: {frontmatter.calories}</p>
-        <img src={frontmatter.thumbnail} alt={frontmatter.thumbnailAlt} />
+        
+        <Img
+            fluid={data.kenImage.childImageSharp.fluid}
+            title={`Photo by Ken Treloar on Unsplash`}
+            />
+            <img src={frontmatter.thumbnail.childImageSharp.resize.src} alt={frontmatter.thumbnailAlt} />
         <div
           className="blog-post-content"
           dangerouslySetInnerHTML={{ __html: html }}
@@ -32,11 +38,25 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         path
         title
-        thumbnail
+        thumbnail {
+            childImageSharp {
+              resize(width: 200) {
+                src
+              }
+            }
+          }
         thumbnailAlt
         calories
         ingredients
       }
+      
+    }
+    kenImage: file(relativePath: { regex: "/gatsby-icon/" }) {
+        childImageSharp {
+            fluid(maxWidth: 600) {
+                ...GatsbyImageSharpFluid
+              }
+        }
     }
   }
 `

@@ -13,13 +13,13 @@ export default function Template({
       <div className="blog-post">
         <h1>{frontmatter.title}</h1>
         <p>{frontmatter.date}</p>
-        <p>{frontmatter.ingredients.join()}</p>
+        {/* <p>{frontmatter.ingredients.join()}</p> */}
         <p>calories: {frontmatter.calories}</p>
         
-        <Img
+        {/* <Img
             fluid={data.kenImage.childImageSharp.fluid}
             title={`Photo by Ken Treloar on Unsplash`}
-            />
+            /> */}
         <Img
             fluid={frontmatter.thumbnail.childImageSharp.fluid}
             title={`Photo by Ken Treloar on Unsplash`}
@@ -50,8 +50,8 @@ export const pageQuery = graphql`
             }
           }
         thumbnailAlt
-        calories
-        ingredients
+        slug
+        tags
       }
       
     }

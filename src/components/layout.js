@@ -19,17 +19,17 @@ import './layout.css'
 //   }
 // }
 class Layout extends React.Component{
-  componentDidMount(){
-    if (window.netlifyIdentity) {
-      window.netlifyIdentity.on("init", user => {
-        if (!user) {
-          window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
-          });
-        }
-      });
-    }
-  }
+  // componentDidMount(){
+  //   if (window.netlifyIdentity) {
+  //     window.netlifyIdentity.on("init", user => {
+  //       if (!user) {
+  //         window.netlifyIdentity.on("login", () => {
+  //           document.location.href = "/admin/";
+  //         });
+  //       }
+  //     });
+  //   }
+  // }
   render(){
     return (
     <StaticQuery
@@ -52,8 +52,7 @@ class Layout extends React.Component{
               ]}
             >
               <html lang="en" />
-              <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-              {/* <script dangerouslySetInnerHTML={html()} /> */}
+              {/* <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script> */}
             </Helmet>
             <Header siteTitle={data.site.siteMetadata.title} />
             <div

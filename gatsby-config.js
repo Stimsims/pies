@@ -14,14 +14,13 @@ module.exports = {
       }
     },
     'gatsby-plugin-react-helmet',
-    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {
-          component: require.resolve(`./src/components/layout.js`)
+          component: require.resolve(`./src/layouts/index.js`)
       }
     },
-  
+    `gatsby-plugin-styled-components`,
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,

@@ -21,7 +21,7 @@ const WherePage = (props) => {
             <Heading>Or visit us in person</Heading>
             <div style={{position: 'relative'}}>
                 <Img
-                fluid={props.data.mapImage.childImageSharp.fluid}
+                fluid={props.data.headerImage.childImageSharp.fluid}
                 title={`Map of the restaurant`}
                 />
                 <Address>
@@ -46,7 +46,7 @@ export const query = graphql`
     site {
       ...SiteInformation
     }
-    mapImage: file(relativePath: { regex: "/googlestaticmap/" }) {
+    headerImage: file(relativePath: { regex: "/googlestaticmap/" }) {
       childImageSharp {
           fluid {
               ...GatsbyImageSharpFluid

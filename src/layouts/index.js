@@ -20,7 +20,7 @@ const TemplateWrapper = (props) => {
                           title
                         }
                       }
-                      headerImage: file(relativePath: { regex: "/apple/" }) {
+                      headerImage: file(relativePath: { regex: "/octopus/" }) {
                         childImageSharp  {
                             fluid{
                                 ...GatsbyImageSharpFluid
@@ -42,7 +42,7 @@ const TemplateWrapper = (props) => {
                         />
                         <Header siteTitle={stat.site.siteMetadata.title} 
                                     image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
-                                    stat.headerImage.childImageSharp.fluid} />
+                                    stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
                         <div
                             style={{
                             margin: `0 auto`,

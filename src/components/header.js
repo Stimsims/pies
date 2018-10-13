@@ -55,17 +55,19 @@ class Header extends React.Component{
                 />
                       </div>
         </CSSTransition> */}
-                     <Img
-                fluid={image}
-                title={`Header image of restaurant`}
-                style={{height: '200px'}}
-                />
+            <ImgWrapper>
+                  <Img
+                      fluid={image}
+                      title={`Header image of restaurant`}
+                      style={{height: '200px'}}
+                      />
+            </ImgWrapper>
+
         <Heading>
           <h1>Gekko</h1>
-          {/* <button onClick={()=>{this.setState({open: !this.state.open})}}>trigger</button> */}
           <Menu>
             {links.map(e=> {
-              return <Link key={e.to} to={e.to} >
+              return <Link key={e.to} to={e.to} activeClassName="active" >
                 {e.text}
               </Link>
             })}
@@ -75,50 +77,43 @@ class Header extends React.Component{
     )
   }
 }
-// const Header = (data) => {
-//     console.log(`header data`, data);
-//     let {siteTitle} = data;
-//     let links = [
-//                 {text: 'where', to: '/where'},
-//                 {text: 'menu', to: '/'},
-//                 {text: 'about', to: '/page-2'}
-//               ];
-//     return (
-//     <div
-//       style={{
-//         width: '100%', height: '200px', position: 'relative', zIndex: '9999'
-//       }}
-//     >
-//     <CSSTransition
-//                     timeout={300}
-//                     classNames="message"
-//                     key={data.image.src}
-//                   >
-//                   <div key={data.image.src} id={data.image.src} style={{backgroundColor:'red', padding:'10px'}}>
-//                   <Img
-//         fluid={data.image}
-//         title={`Header image of restaurant`}
-//         style={{height: '200px'}}
-//         />
-//                   </div>
 
-//     </CSSTransition>
+export default Header;
+const ImgWrapper = styled.div`
+  background-color: white;
+  .gatsby-image-wrapper{
+    img{
+      filter: saturate(100%);
+      transition: all 1s ease;
+      animation-name: filters;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+    }
+  }
+  @keyframes filters {
+    0%{
+      filter: brightness(0.5);
+      filter: contrast(50%);
+      opacity: 0;
+    }
+    10%{
+      filter: brightness(0.5);
+      filter: contrast(50%);
+      opacity: 1;
+    }
+    60%{
+      filter: brightness(5);
+      filter: contrast(300%);
+      opacity: 1;
+    }
+    100%{
+      filter: brightness(1);
+      filter: contrast(100%);
+      opacity: 1;
+    }
+  }
 
-//       <Heading>
-//         <h1>Gekko</h1>
-//         <Menu>
-//           {links.map(e=> {
-//             return <Link key={e.to} to={e.to} >
-//               {e.text}
-//             </Link>
-//           })}
-//         </Menu>
-//       </Heading>
-//     </div>
-//   )
-// }
-
-export default Header
+`
 const Menu = styled.div`
   display: flex;
   width: 100%;
@@ -126,6 +121,46 @@ const Menu = styled.div`
     flex: 1;
     display: inline-block;
     text-align: center;
+    text-decoration:none;
+    background-color: grey;
+    transition: all 1s ease;
+    color: white;
+    border-bottom: 2px solid grey;
+    margin: 10px;
+    transform: translateY(-200%);
+    opacity: 0;
+    animation-name: drop;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-delay: 2s;
+  }
+  a:hover{
+    background-color: lightgrey;
+    border-bottom: 2px solid black;
+  }
+  a.active{
+    background-color: lightgrey;
+  }
+  a:active{
+    transition: all 0s ease;
+    background-color: black;
+    border-bottom: 2px solid grey;
+  }
+  a:nth-child(2){
+    animation-delay: 2.5s;
+  }
+  a:last-child{
+    animation-delay: 3s;
+  }
+  @keyframes drop {
+   from{
+     transform: translateY(-200%);
+     opacity: 0;
+   }
+   to{
+     transform: translateY(0%);
+     opacity: 1;
+   }
   }
 `
 const Heading = styled.div`
@@ -142,10 +177,11 @@ const Heading = styled.div`
   h1{
     line-height: 100px;
     text-align: center;
+    margin: 0;
   }
   @keyframes example {
       from {
-        transform:scale(5) translateY(-100%);
+        transform:scale(5) translateY(20%);
         opacity: 0;
         box-shadow: 0px 0px 0px 0px #777777;
       }

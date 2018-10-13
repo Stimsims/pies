@@ -49,6 +49,7 @@ module.exports = {
               backgroundColor: "transparent"
             }
           },
+          "gatsby-remark-embed-video",
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {

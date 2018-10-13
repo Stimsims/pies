@@ -23,6 +23,8 @@ export default function Template({
         <Img
             fluid={frontmatter.thumbnail.childImageSharp.fluid}
             title={`Photo by Ken Treloar on Unsplash`}
+            style={{border: '10px solid red'}}
+            className={'hello'}
             />
             {/* <img src={frontmatter.thumbnail.childImageSharp.resize.src} alt={frontmatter.thumbnailAlt} /> */}
         <div
@@ -52,9 +54,14 @@ export const pageQuery = graphql`
         thumbnailAlt
         slug
         tags
+        draft
       }
       
     }
+  }
+`
+
+/*
     kenImage: file(relativePath: { regex: "/gatsby-icon/" }) {
         childImageSharp {
             fluid(maxWidth: 600) {
@@ -62,5 +69,4 @@ export const pageQuery = graphql`
               }
         }
     }
-  }
-`
+*/

@@ -1,12 +1,12 @@
 import React from 'react';
 import Img from "gatsby-image";
 import styled from 'styled-components';
-import PageTransition from 'gatsby-plugin-page-transitions';
+//import PageTransition from 'gatsby-plugin-page-transitions';
 
 const WherePage = (props) => {
     console.log(`WherePage props`, props);
     return (
-        <PageTransition>
+        <div>
             <Heading>Contact us</Heading>
             <Contact>
                 <div className="phone">
@@ -33,7 +33,7 @@ const WherePage = (props) => {
                 </Address>
             </div>
  
-        </PageTransition>
+        </div>
     )
 
 }

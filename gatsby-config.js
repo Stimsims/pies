@@ -1,5 +1,5 @@
 const path = require(`path`);
-
+//  'gatsby-plugin-page-transitions',
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -21,7 +21,7 @@ module.exports = {
           component: require.resolve(`./src/components/layout.js`)
       }
     },
-    'gatsby-plugin-page-transitions',
+  
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,

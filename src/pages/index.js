@@ -1,16 +1,16 @@
 import React from 'react'
-import PageTransition from 'gatsby-plugin-page-transitions';
+//import PageTransition from 'gatsby-plugin-page-transitions';
 
 const IndexPage = (props) => {
     console.log(`IndexPage props`, props);
   return (
   
-      <PageTransition>
+      <div>
         <h1>Hi people</h1>
         <p>Welcome to your new Gatsby site.</p>
         <p>Now go build something great.</p>
 
-    </PageTransition>
+    </div>
     
 
   )

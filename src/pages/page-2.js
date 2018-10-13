@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import PageTransition from 'gatsby-plugin-page-transitions';
+//import PageTransition from 'gatsby-plugin-page-transitions';
 import Layout from '../components/layout'
 
 
@@ -21,12 +21,12 @@ const SecondPage = ({
   .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
   .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   return (
-    <PageTransition>
+    <div>
     <h1>Hi from the second page</h1>
     <p>Welcome to page 2</p>
     <Link to="/">Go back to the homepage</Link>
     <div>{Posts}</div>
-    </PageTransition>
+    </div>
   )
 }
 

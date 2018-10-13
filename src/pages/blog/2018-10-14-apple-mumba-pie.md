@@ -14,7 +14,7 @@ allergies:
   - dairy free
   - gluten free
   - nut free
-thumbnail: /images/apple.jpg
+thumbnail: ./../../../static/images/apple.jpg
 thumbnailAlt: apple mumba pie
 rating: '1'
 align: left

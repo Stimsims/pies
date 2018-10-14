@@ -131,7 +131,10 @@ export const query = graphql`
           }
       }
     }
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMarkdownRemark(
+      filter: {frontmatter: {layout: {eq: "menu"}}}
+      sort: { order: DESC, fields: [frontmatter___date] }
+    ) {
       edges {
         node {
           id
@@ -156,8 +159,8 @@ export const query = graphql`
     }
   }
 `
-
-
+//($path: String!)
+//frontmatter: { path: { eq: $path } }
 
 
 /*

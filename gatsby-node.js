@@ -59,15 +59,15 @@ exports.createPages = ({ graphql, actions }) => {
                     },
                 })
               }else if(node.frontmatter.layout === 'blog'){
-                    // createPage({
-                    //     path: node.frontmatter.path,
-                    //     component: blogPostTemplate,
-                    //     // In your blog post template's graphql query, you can use path
-                    //     // as a GraphQL variable to query for data from the markdown file.
-                    //     context: {
-                    //         frontmatter: node.frontmatter
-                    //     },
-                    // })
+                    createPage({
+                        path: node.frontmatter.path,
+                        component: blogPostTemplate,
+                        // In your blog post template's graphql query, you can use path
+                        // as a GraphQL variable to query for data from the markdown file.
+                        context: {
+                            frontmatter: node.frontmatter
+                        },
+                    })
               }
 
           })

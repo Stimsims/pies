@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import Img from 'gatsby-image';
+import {animationMixIn} from './../components/animations/animation';
 
 //import PageTransition from 'gatsby-plugin-page-transitions';
 const renderMenu = (data) => {
@@ -9,14 +10,16 @@ const renderMenu = (data) => {
     console.log(`renderMenu item `, n);
     let {node} = n;
     return (
-      <Item>
+      <Item key={node.frontmatter.path}>
+        <div className="item-image">
+          <Img
+            fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
+            title={`Header image of restaurant`}
+            index={i}
+            className={i%2===0?'imgleft':'imgright'}
+            />
+        </div>
 
-        <Img
-          fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
-          title={`Header image of restaurant`}
-          style={{height: '200px', width: '300px', float: i%2===0?'left':'right'}}
-          className={i%2===0?'imgleft':'imgright'}
-          />
                 <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
           <h3 className="menu-item-title">{node.frontmatter.title}</h3>
           <p className="menu-item-description">{node.frontmatter.description}</p>
@@ -31,77 +34,88 @@ const IndexPage = (props) => {
   return (
   
       <div>
-        <h1 style={{textAlign: 'center'}}>Menu</h1>
+        <div>
+          <Title>Menu</Title>
+        </div>
+        
         <Menu>
           {renderMenu(props.data)}
         </Menu>
-    </div>
+      </div>
     
 
   )
 }
 
 export default IndexPage;
-
+const Title = styled.h1`
+  text-align: center;
+  margin: 20px 0px 10px 0px;
+  opacity: 0;
+  animation-name: slideDown;
+  ${props => {
+    return animationMixIn('1', '1', 'forwards', 'ease-in');
+  }}
+`
 const Menu = styled.div`
   width: 100%;
-  animation-name: slideUp;
-  animation-duration: 2s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in;
   min-height: 100px;
   padding: 10px;
-
-  @keyframes slideUp {
-    from {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    to {transform: translateY(0%);
-      opacity: 1;
-    }
-  }
 `
 const Item = styled.div`
   width: 100%; height: 200px;
   text-align: center;
   margin: 0; padding: 0;
+  display: flex;
+  flex-direction: column;
   .textbox{
-    background-color: transparent;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    transform: translateX(100%);
-    animation-name: abc;
-    animation-duration: 1s;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
-    animation-timing-function: ease-in;
+    flex: 1;
+    width: 100%; max-width: 300px;
+    text-align: center;
+    display: inline;
+    margin: auto;
+    position: relative;
+    transform: translateX(${props=>props.index%2===0?'':'-'}200%);
+    animation-name: slideDown;
+    ${props => {
+      return animationMixIn('1', '1.5', 'forwards', 'ease-in');
+    }}
     z-index: 19;
+    .menu-item-title{
+      margin: 5px;
+    }
+    .menu-item-allergies{
+      position: absolute; width: 100%;
+      bottom: 0px; margin: 0;
+    }
   }
-  .gatsby-image-wrapper{
+  .item-image{
     z-index: 999;
+    flex: 1;
+    text-align:center;
+    .gatsby-image-wrapper{
+      margin: auto;
+      max-width: 300px;
+    }
   }
-  @keyframes abc {
-    from {transform: translateX(100%);}
-    to { transform: translateX(0%);}
+  @media only screen and (min-width: 700px) {
+    flex-direction: ${props=>props.index%2===0?'row':'row-reverse'};
+    .item-image{
+      z-index: 999;
+      width: 300px;
+    }
+    .textbox{
+      animation-name: ${props=>props.index%2===0?'slideLeft':'slideRight'};
+      max-width: 3000px;
+    }
+  }
+  @keyframes slideTextLarge {
+    0% {transform: translateY(-100%); opacity: 0;}
+    50% {opacity: 0;}
+    100% { transform: translateY(0%); opacity: 1;}
 }
 `
-/*
-  .imgleft picture img{
-    animation-name: imglefts:
-    animation-duration: 5s;
-    animation-fill-mode: forwards;
-  }
-  @keyframes imglefts {
-    from{
-      filter: opacity(0%);
-    }
-    to{
-      filter: opacity(100%);
-    }
-  }
-*/
+
 export const query = graphql`
   query IndexPage {
     site {

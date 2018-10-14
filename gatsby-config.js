@@ -21,6 +21,12 @@ module.exports = {
       }
     },
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/components/typography`,
+      },
+    },
     `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-source-filesystem`,

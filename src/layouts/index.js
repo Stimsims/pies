@@ -6,6 +6,9 @@ import Header from './../components/header.js';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 
+import './../components/animations/slides.css';
+import './../components/animations/fades.css';
+import './../components/styles/text.css';
 import "./layout.css"
 
 const TemplateWrapper = (props) => {
@@ -63,9 +66,11 @@ const TemplateWrapper = (props) => {
 export default TemplateWrapper
 
 const WebsiteWrapper = styled.div`
-  overflow-x: hidden;
+  
+  height: 100vh;
+
 `
-/*
+/*  overflow-x: hidden;
            {data && data.site && <Header siteTitle={data.site.siteMetadata.title} 
                     image={data.mapImage?
                         data.mapImage.childImageSharp.fluid

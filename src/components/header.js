@@ -30,31 +30,7 @@ class Header extends React.Component{
                 {text: 'about', to: '/page-2'}
               ];
     return (
-      <div
-        style={{
-          width: '100%', height: '200px', position: 'relative', zIndex: '9999'
-        }}
-      >
-        {/* <CSSTransition
-                        in={this.state.open}
-                        timeout={300}
-                        classNames="message"
-                        key={image.src}
-                        onExited={() => {
-                          console.log(`Header did transition`);
-                          this.setState({
-                            image: image.src
-                          });
-                        }}
-                      >
-                      <div key={image.src} id={image.src} style={{height: '300px', backgroundColor:'red', padding:'10px'}}>
-                      <Img
-                fluid={image}
-                title={`Header image of restaurant`}
-                style={{height: '200px'}}
-                />
-                      </div>
-        </CSSTransition> */}
+      <Banner>
             <ImgWrapper>
                   <Img
                       fluid={image}
@@ -64,21 +40,24 @@ class Header extends React.Component{
             </ImgWrapper>
 
         <Heading>
-          <h1>Gekko</h1>
+          <h1 className="insetshadow">Gekko</h1>
           <Menu>
             {links.map(e=> {
               return <Link key={e.to} to={e.to} activeClassName="active" >
-                {e.text}
+                <p>{e.text}</p>
               </Link>
             })}
           </Menu>
         </Heading>
-      </div>
+      </Banner>
     )
   }
 }
 
 export default Header;
+const Banner = styled.div`
+  width: 100%; height: 200px; position: relative; z-index: 9999;
+`
 const ImgWrapper = styled.div`
   background-color: white;
   .gatsby-image-wrapper{
@@ -122,6 +101,7 @@ const Menu = styled.div`
     display: inline-block;
     text-align: center;
     text-decoration:none;
+    text-transform: capitalize;
     background-color: grey;
     transition: all 1s ease;
     color: white;
@@ -133,13 +113,17 @@ const Menu = styled.div`
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-delay: 2s;
+    p{
+      margin: 0;
+    }
   }
   a:hover{
     background-color: lightgrey;
     border-bottom: 2px solid black;
   }
   a.active{
-    background-color: lightgrey;
+    background-color: black;
+    border-bottom: 2px solid black;
   }
   a:active{
     transition: all 0s ease;
@@ -178,6 +162,7 @@ const Heading = styled.div`
     line-height: 100px;
     text-align: center;
     margin: 0;
+    text-transform: uppercase;
   }
   @keyframes example {
       from {
@@ -196,34 +181,3 @@ const Heading = styled.div`
     margin: auto;
   }
 `
-
-/*
-box-shadow: 0px 1px 1px 1px #777777;
-box-shadow: 0px 2px 4px 2px #888888;
-    <div
-      style={{
-        background: 'rebeccapurple',
-        marginBottom: '1.45rem',
-      }}
-    >
-      <div
-        style={{
-          margin: '0 auto',
-          maxWidth: 960,
-          padding: '1.45rem 1.0875rem',
-        }}
-      >
-        <h1 style={{ margin: 0 }}>
-          <Link
-            to="/"
-            style={{
-              color: 'white',
-              textDecoration: 'none',
-            }}
-          >
-            {siteTitle}
-          </Link>
-        </h1>
-      </div>
-    </div>
-*/

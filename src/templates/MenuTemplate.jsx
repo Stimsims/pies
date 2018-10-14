@@ -1,24 +1,20 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image";
-import styled from 'styled-components';
+import { graphql } from "gatsby";
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark;
-  console.log(`BlogTemplate data`, data);
+  console.log(`MenuTemplate data`, data);
   return (
-    <div className="blog-post-container">
-        Blog post
-    </div>
+    <div>Menu Item</div>
   )
 }
 
 
 export const pageQuery = graphql`
-  query BlogTemplate ($path: String!) {
+  query MenuTemplate($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
       frontmatter {
@@ -33,6 +29,8 @@ export const pageQuery = graphql`
             }
           }
         thumbnailAlt
+        slug
+        draft
       }
       
     }

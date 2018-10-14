@@ -27,7 +27,7 @@ class Header extends React.Component{
         let links = [
                 {text: 'where', to: '/where'},
                 {text: 'menu', to: '/'},
-                {text: 'about', to: '/page-2'}
+                {text: 'blog', to: '/blog'}
               ];
     return (
       <Banner>

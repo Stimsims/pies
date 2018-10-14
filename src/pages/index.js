@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
+import { Link } from 'gatsby';
 
 //import PageTransition from 'gatsby-plugin-page-transitions';
 const renderMenu = (data) => {
@@ -10,17 +11,18 @@ const renderMenu = (data) => {
     console.log(`renderMenu item `, n);
     let {node} = n;
     return (
-      <Item key={node.frontmatter.path}>
-        <div className="item-image">
-          <Img
-            fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
-            title={`Header image of restaurant`}
-            index={i}
-            className={i%2===0?'imgleft':'imgright'}
-            />
-        </div>
-
-                <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
+      <Item key={node.frontmatter.path} index={i}>
+        <Link key={node.frontmatter.path} to={node.frontmatter.path}>
+          <div className="item-image">
+            <Img
+              fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
+              title={`Header image of restaurant`}
+              index={i}
+              className={i%2===0?'imgleft':'imgright'}
+              />
+          </div>
+        </Link>
+        <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
           <h3 className="menu-item-title">{node.frontmatter.title}</h3>
           <p className="menu-item-description">{node.frontmatter.description}</p>
           <p className="menu-item-allergies">{node.frontmatter.allergies.join()}</p>
@@ -63,11 +65,12 @@ const Menu = styled.div`
   padding: 10px;
 `
 const Item = styled.div`
-  width: 100%; height: 200px;
+  width: 100%; 
   text-align: center;
   margin: 0; padding: 0;
   display: flex;
   flex-direction: column;
+  margin: 10px 0 40px 0;
   .textbox{
     flex: 1;
     width: 100%; max-width: 300px;

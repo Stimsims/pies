@@ -78,20 +78,6 @@ const Label=styled.p`
 `
 /*
 
-    transition: all 1s ease;
-    background-color: ${props=>{
-        if(props.colorKey){
-            return props.theme[props.hoverKey]
-        }else if(props.color){
-            return props.hover;
-        }else{
-            return props.theme.primary;
-        }
-    }};
-    opacity: 0;
-    &:hover{
-        opacity: 0.3;
-    }
 
 
 border-radius: ${props => props.round?props.round:'0'}

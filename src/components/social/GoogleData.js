@@ -35,7 +35,7 @@ export const getGoogleArticle = (title, img, alt) => {
 //hasMenuSection - array, 
   //typ menuSection, name entrees, hasMenuItem array
     //menyItem, name, desc, offer, image, suitableForDiet, nutrition
-        //offer, price, priceCurrency
+        //offer, price, priceCurrency   "http://schema.org/VeganDiet"
 const makeItem = (item) => {
     console.log(`Menu makeItem `,item);
     return {
@@ -43,7 +43,7 @@ const makeItem = (item) => {
         "name": item.frontmatter.title,
         "description": item.frontmatter.description,
         "image": "https://goofy-archimedes-763914.netlify.com" + item.frontmatter.path,
-        "suitableForDiet": ["http://schema.org/GlutenFreeDiet", "http://schema.org/VeganDiet"],
+        "suitableForDiet": [item.frontmatter.glutenfree?"http://schema.org/GlutenFreeDiet":null],
         "offers": {
             "@type": "Offer",
                     "price": item.frontmatter.price,

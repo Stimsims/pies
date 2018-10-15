@@ -47,4 +47,6 @@ collections:
         entry: title
         searchFields: ['title']
         multiselect: true
+        valueField: "title"
+        displayFields: ["title", "path"]
 

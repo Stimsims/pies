@@ -38,11 +38,101 @@ export const getGoogleRestaurant = () => {
         "@type": "Restaurant",
         "acceptsReservations": "true",
         "servesCuisine": "Indian",
-        "hasMenu":{
-            "@type": "Menu",
-            "menuAddOn": [
-                {"@type": "MenuItem", "name": "pasta"}
-            ]
-        }
+        "name": "Gekko",
+        "address": "1 infy loop, Mercedes Park, Vic",
+        "priceRange": "$$",
+        "telephone": "454 5454 454",
+        "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
+        "hasMenuSection": [
+            {
+             "@type": "MenuSection",
+             "name": "Appetizers",
+             "hasMenuItem": [
+                {
+                "@type": "MenuItem",
+                "name": "Fried Eggplant",
+                "description": "Served with Italian red gravy.",
+                "offers": {
+                    "@type": "Offer",
+                                "price": "7.95",
+                                "priceCurrency": "USD"
+                    }
+                },
+                {
+                "@type": "MenuItem",
+                "name": "Fried Calamari",
+                "description": "Served with Italian red gravy or honey mustard.",
+                    "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
+                "suitableForDiet": "http://schema.org/GlutenFreeDiet",
+                "nutrition": {"@type": "NutritionInformation",
+                            "calories": "573 calories",
+                            "fatContent": "25 grams",
+                            "carbohydrateContent": "26 grams",
+                            "proteinContent": "61 grams"
+                            },
+                    "offers": {
+                        "@type": "Offer",
+                            "price": "7.95",
+                            "priceCurrency": "USD"
+                        }
+                }
+             ]
+            },
+            {
+             "@type": "MenuSection",
+             "name": "Soups",
+             "hasMenuItem": [
+             {
+              "@type": "MenuItem",
+              "name": "Lobster Bisque",
+              "offers": [
+              {
+               "@type": "Offer",
+               "price": "6.75",
+               "priceCurrency": "USD",
+               "eligibleQuantity": {
+                "@type": "QuantitativeValue",
+                "name": "Cup"
+                }
+              },
+              {
+               "@type": "Offer",
+               "price": "9.95",
+               "priceCurrency": "USD",
+               "eligibleQuantity" : {
+                "@type": "QuantitativeValue",
+                "name": "Bowl"
+                }
+              }
+              ]
+             },
+             {
+              "@type": "MenuItem",
+              "name": "Creole Seafood Gumbo",
+              "offers": [
+              {
+               "@type": "Offer",
+               "price": "6.75",
+               "priceCurrency": "USD",
+               "eligibleQuantity": {
+                "@type": "QuantitativeValue",
+                "name": "Cup"
+                }
+              },
+              {
+               "@type": "Offer", 
+               "name": "Bowl",
+               "price": "9.95",
+               "priceCurrency": "USD",
+               "eligibleQuantity" : {
+                "@type": "QuantitativeValue",
+                "name": "Bowl"
+                }
+              }
+              ]
+             }
+             ]
+            }
+        ]
     }
 }

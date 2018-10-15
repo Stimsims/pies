@@ -43,6 +43,7 @@ const IndexPage = (props) => {
     let article = getGoogleArticle(props.data.site.siteMetadata.title,
       `https://goofy-archimedes-763914.netlify.com${props.data.headerImage.childImageSharp.fluid.src}`, 'the restaurant interior');
       console.log(`IndexPage article`, article);
+      console.log(JSON.stringify(getGoogleRestaurant()));
   return (
   
       <div>

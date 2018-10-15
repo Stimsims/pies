@@ -40,8 +40,14 @@ collections:
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Featured Image Alt Text", name: "thumbnailAlt", widget: "string"}
-      - {required: false, name: menuitemtitle,label: MenuItemsTitle,widget: relation,collection: menu,
-        entry: title,searchFields: ['title'],multiselect: true,valueField: "title",displayFields: ["title"]}
-      - {required: false, name: menuitemdesc,label: MenuItemsDesc,widget: relation,collection: menu,
-        entry: description,searchFields: ['title'],multiselect: true,valueField: "description",displayFields: ["title"]}
+      - required: false
+        label: "MenuItem"
+        name: "menuitem"
+        widget: "object"
+        fields: 
+          - {name: menuitemtitle,label: MenuItemsTitle,widget: relation,collection: menu,
+            entry: title,searchFields: ['title'],multiselect: true,valueField: "title",displayFields: ["title"]}
+          - {name: menuitemdesc,label: MenuItemsDesc,widget: relation,collection: menu,
+            entry: description,searchFields: ['title'],multiselect: true,valueField: "description",displayFields: ["title"]}
+
 

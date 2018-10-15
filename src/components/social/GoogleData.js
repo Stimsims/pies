@@ -56,13 +56,17 @@ const makeMenu = (menuitems) => {
     let sections = ['entrees', 'mains'];
     sections.map(s => {
         menu = [...menu,
-            menuitems
-            .filter(m => {
-                return m.node.frontmatter.menusection === s
-            })
-            .map(m => {
-                return makeItem(m.node)
-            })
+            {
+                "@type": "MenuSection",
+                "name": s,
+                "hasMenuItem": menuitems
+                    .filter(m => {
+                        return m.node.frontmatter.menusection === s
+                    })
+                    .map(m => {
+                        return makeItem(m.node)
+                    })
+            }
         ]
     })
     console.log(`Menu makeMenu`, menu);

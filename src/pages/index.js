@@ -8,16 +8,48 @@ import SocialMedia from './../components/SocialMedia.js';
 import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
-//import PageTransition from 'gatsby-plugin-page-transitions';
+const getGoogleData = (title, img, alt) => {
+  return {
+      "@context": "http://schema.org/",
+          "@type": "Article",
+          "name": title,
+          "headline": "aricle headline",
+          "author": "Elaine Smith",
+          "publisher": {
+              "@type": "Organization",
+              "email": "test@gmail.com",
+              "name": "IoH",
+              "url": img,
+              "logo": {
+                  "@type": "ImageObject",
+                  "thumbnail": img,
+                  "url": img
+              }
+          },
+          "mainEntityOfPage":{
+              "@type": "CreativeWork",
+              "name": "my creative vid",
+              "about": "solving resident evil armor key puzzle"
+          },
+          "image": img,
+          "thumbnailUrl": img,
+          "description": "A classic apple pie.",
+          "about": "How people solve problems",
+          "articleSection":"People are a mystery. We break mysteries down by analyzing their simpeles examples. So, we're analyzing video game puzzles",
+          "timeRequired": "P30M",
+          "dateModified": "20181009T050200Z",
+          "datePublished": "20181009T050200Z"
+  }
+}
 const renderMenu = (data) => {
   console.log(`renderMenu `, data);
   return data.allMarkdownRemark.edges.map((n, i) => {
     console.log(`renderMenu item `, n);
     let {node} = n;
     return (
-      <div>
+      <div key={node.frontmatter.path} >
         <hr />
-        <Item key={node.frontmatter.path} index={i}>
+        <Item index={i}>
           <Link key={node.frontmatter.path} to={node.frontmatter.path}>
             <div className="item-image">
               <Img
@@ -45,10 +77,27 @@ const IndexPage = (props) => {
   
       <div>
         <Helmet>
+        <meta name="description" content="Gekko is a restaurant, here is its menu" />
+
           <meta property="og:title" content={props.data.site.siteMetadata.title} />
           <meta property="og:image" content={props.data.headerImage.childImageSharp.fluid.src}  />
           <meta property="og:description" content="Gekko is a restaurant, here is its menu" />
           <meta property="og:type" content="website" />
+          <meta property="og:site_name" content={props.data.site.siteMetadata.title} />
+
+          <meta name="twitter:card" content="summary"/>
+          <meta name="twitter:site" content="@Paygevii1"/>
+          <meta name="twitter:creator" content="@Paygevii1"/>
+          <meta name="twitter:title" content={props.data.site.siteMetadata.title}/>
+          <meta name="twitter:description" content={"Gekko is a restaurant, here is its menu"} />
+          <meta name="twitter:image" content={props.data.headerImage.childImageSharp.fluid.src}/>
+          <meta name="twitter:image:alt" content={'the restaurant interior'} />
+
+          <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleData(props.data.site.siteMetadata.title,
+                  props.data.headerImage.childImageSharp.fluid.src, 'the restaurant interior')) }}
+            />
         </Helmet>
         <Title>What's on the Menu?</Title>
         <SocialMedia url={props.location.href} />

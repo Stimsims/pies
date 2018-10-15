@@ -23,14 +23,14 @@ const SecondPage = ({
   .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   return (
     <div>
-      <Title>Blog</Title>
+      <Title>Updates</Title>
       <List>
         {edges.map(({node}, i) => {
           console.log(`blog item `, node);
           return <Link key={node.id} to={node.frontmatter.path}><Item>
             <div>
               <h3 className="blog-title">{node.frontmatter.title}</h3>
-              <h5 className="blog-date" style={{display: 'inline-block', float: 'right'}}>{node.frontmatter.date}</h5>
+              <h5 className="blog-date">{node.frontmatter.date}</h5>
             </div>
             <p className="blog-desc">description</p>
           </Item></Link>
@@ -64,9 +64,9 @@ const Item = styled.div`
   border-bottom: 2px solid grey;
   margin-bottom: 20px;
   padding: 5px 5px 0px 5px;
-  .blog-date{margin: 0;}
-  .blog-title{ text-align: center; display: inline-block; margin: 0;}
-  .blog-desc{ text-align: center; margin: 15px 0 0px 0;}
+  .blog-date{margin: 8px 0 0 0; float: none; text-align: center; display: block; }
+  .blog-title{ text-align: center; display: block; margin: 0;}
+  .blog-desc{ text-align: center; margin: 10px 0 0px 0;}
   p{
     color: hsla(0,0%,0%,0.87);
   }
@@ -76,6 +76,10 @@ const Item = styled.div`
     background-color: lightgrey;
     transform: scale(1.03);
   }
+  @media only screen and (min-width: 700px) {
+    .blog-date{margin: 0; float: right; display: inline-block; }
+    .blog-title{ text-align: left; display: inline-block;}
+  }
 `
 
 export const query = graphql`
@@ -83,7 +87,7 @@ export const query = graphql`
     site {
       ...SiteInformation
     }
-    headerImage: file(relativePath: { regex: "/field/" }) {
+    headerImage: file(relativePath: { regex: "/fieldcroptomatoes/" }) {
       childImageSharp{
           fluid {
               ...GatsbyImageSharpFluid

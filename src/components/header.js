@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Img from "gatsby-image";
-import { CSSTransition } from 'react-transition-group';
 import './transition.css';
+
 class Header extends React.Component{
   constructor(props){
     super(props);
@@ -102,10 +102,13 @@ const Menu = styled.div`
     text-align: center;
     text-decoration:none;
     text-transform: capitalize;
-    background-color: grey;
+    background-color: ${props => {return props.theme.neutralDarkD}};
     transition: all 1s ease;
-    color: white;
-    border-bottom: 2px solid grey;
+    color: ${props => {
+      console.log(`menu theme props ` + props.theme.neutralLightD, props);
+      return props.theme.neutralLightL}
+    };
+    border-bottom: 2px solid ${props => {return props.theme.neutralDarkD}};
     margin: 10px;
     transform: translateY(-200%);
     opacity: 0;
@@ -117,18 +120,14 @@ const Menu = styled.div`
       margin: 0;
     }
   }
-  a:hover{
-    background-color: lightgrey;
-    border-bottom: 2px solid black;
-  }
-  a.active{
-    background-color: black;
-    border-bottom: 2px solid black;
+  a:hover, a.active{
+    background-color: ${props => {return props.theme.neutralDarkL}};
+    border-bottom: 2px solid ${props => {return props.theme.neutralDarkL}};
   }
   a:active{
     transition: all 0s ease;
     background-color: black;
-    border-bottom: 2px solid grey;
+    border-bottom: 2px solid black;
   }
   a:nth-child(2){
     animation-delay: 2.5s;

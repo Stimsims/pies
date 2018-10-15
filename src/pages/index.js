@@ -2,7 +2,11 @@ import React from 'react'
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
+// import Icon from './../components/Icons/Icon.jsx';
+// import IconButton from './../components/Icons/IconButton.jsx';
+import SocialMedia from './../components/SocialMedia.jsx';
 import { Link } from 'gatsby';
+import Helmet from 'react-helmet';
 
 //import PageTransition from 'gatsby-plugin-page-transitions';
 const renderMenu = (data) => {
@@ -11,23 +15,27 @@ const renderMenu = (data) => {
     console.log(`renderMenu item `, n);
     let {node} = n;
     return (
-      <Item key={node.frontmatter.path} index={i}>
-        <Link key={node.frontmatter.path} to={node.frontmatter.path}>
-          <div className="item-image">
-            <Img
-              fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
-              title={`Header image of restaurant`}
-              index={i}
-              className={i%2===0?'imgleft':'imgright'}
-              />
+      <div>
+        <hr />
+        <Item key={node.frontmatter.path} index={i}>
+          <Link key={node.frontmatter.path} to={node.frontmatter.path}>
+            <div className="item-image">
+              <Img
+                fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
+                title={`Header image of restaurant`}
+                index={i}
+                className={i%2===0?'imgleft':'imgright'}
+                />
+            </div>
+          </Link>
+          <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
+            <h3 className="menu-item-title">{node.frontmatter.title}</h3>
+            <p className="menu-item-description">{node.frontmatter.description}</p>
+            <p className="menu-item-allergies">{node.frontmatter.allergies.join()}</p>
           </div>
-        </Link>
-        <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
-          <h3 className="menu-item-title">{node.frontmatter.title}</h3>
-          <p className="menu-item-description">{node.frontmatter.description}</p>
-          <p className="menu-item-allergies">{node.frontmatter.allergies.join()}</p>
-        </div>
-      </Item>
+          
+        </Item>
+      </div>
     )
   })
 }
@@ -36,10 +44,14 @@ const IndexPage = (props) => {
   return (
   
       <div>
-        <div>
-          <Title>Menu</Title>
-        </div>
-        
+        <Helmet>
+          <meta property="og:title" content={props.data.site.siteMetadata.title} />
+          <meta property="og:image" content={props.data.headerImage.childImageSharp.fluid.src}  />
+          <meta property="og:description" content="Gekko is a restaurant, here is its menu" />
+          <meta property="og:type" content="website" />
+        </Helmet>
+        <Title>What's on the Menu?</Title>
+        <SocialMedia url={props.location.href} />
         <Menu>
           {renderMenu(props.data)}
         </Menu>

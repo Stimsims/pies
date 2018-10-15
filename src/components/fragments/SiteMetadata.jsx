@@ -9,7 +9,6 @@ export const query = graphql`
   fragment SiteInformation on Site {
     siteMetadata {
       title
-      myRandomProp
     }
   }
 `

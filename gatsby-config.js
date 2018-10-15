@@ -2,8 +2,7 @@ const path = require(`path`);
 //  'gatsby-plugin-page-transitions',
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
-    myRandomProp: 'has been retrieved'
+    title: 'Gekko'
   },
   plugins: [
     {

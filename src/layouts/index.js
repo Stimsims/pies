@@ -4,12 +4,13 @@ import Helmet from "react-helmet"
 import Transition from "./../components/Transition.js"
 import Header from './../components/header.js';
 import { StaticQuery, graphql } from 'gatsby';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 
 import './../components/animations/slides.css';
 import './../components/animations/fades.css';
 import './../components/styles/text.css';
 import "./layout.css"
+import theme from './theme.js';
 
 const TemplateWrapper = (props) => {
     let { children, location, data} = props;
@@ -35,29 +36,33 @@ const TemplateWrapper = (props) => {
               render={stat => {
                   console.log(`StaticQuery`, stat);
                   return(
-                    <WebsiteWrapper>
-                        <Helmet
-                            title="Gatsby Default Starter"
-                            meta={[
-                            { name: `description`, content: `Sample` },
-                            { name: `keywords`, content: `sample, something` },
-                            ]}
-                        />
-                        <Header siteTitle={stat.site.siteMetadata.title} 
-                                    image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
-                                    stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
-                        <div
-                            style={{
-                            margin: `0 auto`,
-                            maxWidth: 960,
-                            padding: `0px 1.0875rem 1.45rem`,
-                            paddingTop: '100px',
-                            }}
-                        >
-                        
-                            <Transition location={location}>{children}</Transition>
-                        </div>
-                    </WebsiteWrapper>
+                    <ThemeProvider theme={theme}>
+                        <WebsiteWrapper>
+                            <Helmet
+                                title="Gatsby Default Starter"
+                                meta={[
+                                { name: `description`, content: `Sample` },
+                                { name: `keywords`, content: `sample, something` },
+                                {name: 'robots', content: 'noIndex'}
+                                ]}
+                            >
+                            </Helmet>
+                            <Header siteTitle={stat.site.siteMetadata.title} 
+                                        image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
+                                        stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
+                            <div
+                                style={{
+                                margin: `0 auto`,
+                                maxWidth: 960,
+                                padding: `0px 1.0875rem 1.45rem`,
+                                paddingTop: '150px',
+                                }}
+                            >
+                            
+                                <Transition location={location}>{children}</Transition>
+                            </div>
+                        </WebsiteWrapper>       
+                    </ThemeProvider>
                 )
         }}/> //end of StaticQuiry
       )

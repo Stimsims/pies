@@ -1,13 +1,13 @@
 import React from 'react';
 import Img from "gatsby-image";
 import styled from 'styled-components';
-//import PageTransition from 'gatsby-plugin-page-transitions';
+import {animationMixIn} from './../components/animations/animation';
 
 const WherePage = (props) => {
     console.log(`WherePage props`, props);
     return (
         <div>
-            <Heading>Contact us</Heading>
+            <Title>Where are we?</Title>
             <Contact>
                 <div className="phone">
                     <Label>Phone</Label>
@@ -18,10 +18,9 @@ const WherePage = (props) => {
                     <p>gekko@gmaik.com</p>
                 </div>
             </Contact>
-            <Heading>Or visit us in person</Heading>
             <div style={{position: 'relative'}}>
                 <Img
-                fluid={props.data.headerImage.childImageSharp.fluid}
+                fluid={props.data.mapImage.childImageSharp.fluid}
                 title={`Map of the restaurant`}
                 />
                 <Address>
@@ -46,21 +45,37 @@ export const query = graphql`
     site {
       ...SiteInformation
     }
-    headerImage: file(relativePath: { regex: "/googlestaticmap/" }) {
+    headerImage: file(relativePath: { regex: "/restaurant/" }) {
       childImageSharp {
           fluid {
               ...GatsbyImageSharpFluid
           }
       }
     }
+    mapImage: file(relativePath: { regex: "/googlestaticmap/" }) {
+        childImageSharp {
+            fluid {
+                ...GatsbyImageSharpFluid
+            }
+        }
+      }
   }
 `
-const Heading = styled.p`
+//TODO, DRY make title seperate component
+const Title = styled.h1`
+  text-align: center;
+  margin: 20px 0px 10px 0px;
+  opacity: 0;
+  animation-name: slideDown;
+  ${props => {
+    return animationMixIn('1', '1', 'forwards', 'ease-in');
+  }}
+`
+const Heading = styled.h4`
   text-align: center;
   font-weight: bold;
   font-size: 1.5em;
   margin: 30px 0px 15px 0px;
-  color: grey;
 `
 const Label = styled.p`
 text-align: center;

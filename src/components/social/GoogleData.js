@@ -37,8 +37,8 @@ export const getGoogleArticle = (title, img, alt) => {
         "@context":"http://schema.org",
         "@type":"Menu",
         "name": "Our Menu",
-        "url": "http://your-restaurant.com/menu/",
-        "mainEntityOfPage": "http://your-restaurant.com/menu/",
+        "url": "https://goofy-archimedes-763914.netlify.com/",
+        "mainEntityOfPage": "https://goofy-archimedes-763914.netlify.com/",
         "inLanguage":"English",
         "offers": {
          "@type": "Offer",
@@ -64,7 +64,7 @@ export const getGoogleArticle = (title, img, alt) => {
           "@type": "MenuItem",
           "name": "Fried Calamari",
           "description": "Served with Italian red gravy or honey mustard.",
-             "image": "http://your-restaurant.com/images/fried-calamari.jpg",
+             "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
           "suitableForDiet": "http://schema.org/GlutenFreeDiet",
           "nutrition": {
         "@type": "NutritionInformation",

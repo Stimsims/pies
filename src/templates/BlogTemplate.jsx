@@ -33,7 +33,10 @@ export const pageQuery = graphql`
             }
           }
         thumbnailAlt
-        menu
+        menuitem {
+            menuitemtitle
+            menuitemdesc
+        }
       }
       
     }

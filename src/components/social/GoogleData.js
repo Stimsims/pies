@@ -75,7 +75,7 @@ export const getGoogleRestaurant = () => {
               "name": "Fried Calamari",
               "description": "Served with Italian red gravy or honey mustard.",
                  "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
-              "suitableForDiet": "http://schema.org/GlutenFreeDiet",
+              "suitableForDiet": ["http://schema.org/GlutenFreeDiet", "http://schema.org/VeganDiet"],
               "nutrition": {
             "@type": "NutritionInformation",
                          "calories": "573 calories",

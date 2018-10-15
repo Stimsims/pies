@@ -41,7 +41,7 @@ const renderMenu = (data) => {
 const IndexPage = (props) => {
     console.log(`IndexPage props`, props);
     let article = getGoogleArticle(props.data.site.siteMetadata.title,
-      props.data.headerImage.childImageSharp.fluid.src, 'the restaurant interior');
+      props.location.origin + props.data.headerImage.childImageSharp.fluid.src, 'the restaurant interior');
       console.log(`IndexPage article`, article);
   return (
   

@@ -31,3 +31,18 @@ export const getGoogleArticle = (title, img, alt) => {
             "datePublished": "20181009T050200Z"
     }
   }
+
+export const getGoogleRestaurant = () => {
+    return {
+        "@context": "http://schema.org/",
+        "@type": "Restaurant",
+        "acceptsReservations": "true",
+        "servesCuisine": "Indian",
+        "hasMenu":{
+            "@type": "Menu",
+            "menuAddOn": [
+                {"@type": "MenuItem", "name": "pasta"}
+            ]
+        }
+    }
+}

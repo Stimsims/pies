@@ -40,11 +40,11 @@ collections:
       - {label: "Tags", name: "tags", widget: "list"}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Featured Image Alt Text", name: "thumbnailAlt", widget: "string"}
-      - name: tags
-        label: Tags
-          widget: relation
-          collection: menu
-          entry: title
-          searchFields: ['title']
-          multiselect: true
+      - name: menuitems
+        label: MenuItems
+        widget: relation
+        collection: menu
+        entry: title
+        searchFields: ['title']
+        multiselect: true
 

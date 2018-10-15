@@ -30,7 +30,7 @@ const renderMenu = (data) => {
           <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
             <h3 className="menu-item-title">{node.frontmatter.title}</h3>
             <p className="menu-item-description">{node.frontmatter.description}</p>
-            <p className="menu-item-allergies">{node.frontmatter.allergies.join()}</p>
+            {node.frontmatter.glutenfree && <p className="menu-item-allergies">gluten free</p>}
           </div>
           
         </Item>
@@ -39,11 +39,11 @@ const renderMenu = (data) => {
   })
 }
 const IndexPage = (props) => {
-    console.log(`IndexPage props url ` + props.location.host + props.data.headerImage.childImageSharp.fluid.src, props);
+    console.log(`IndexPage props url ` + props.data.allMarkdownRemark.edges, props);
     let article = getGoogleArticle(props.data.site.siteMetadata.title,
       `https://goofy-archimedes-763914.netlify.com${props.data.headerImage.childImageSharp.fluid.src}`, 'the restaurant interior');
       console.log(`IndexPage article`, article);
-      console.log(JSON.stringify(getGoogleRestaurant()));
+
   return (
   
       <div>
@@ -73,7 +73,7 @@ const IndexPage = (props) => {
         
         <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleRestaurant()) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges)) }}
             />
       </div>
     
@@ -176,7 +176,6 @@ export const query = graphql`
             path
             title
             description
-            allergies
             thumbnail {
               childImageSharp {
                   fluid(maxWidth: 300) {
@@ -185,6 +184,10 @@ export const query = graphql`
               }
             }
             thumbnailAlt
+            glutenfree
+            price
+            outofstock
+            menusection
           }
         }
       }

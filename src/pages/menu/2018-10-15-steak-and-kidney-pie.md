@@ -12,6 +12,7 @@ draft: true
 menusection: mains
 price: '10.50'
 glutenfree: true
+outofstock: false
 thumbnail: /images/steak.jpg
 thumbnailAlt: steak and kidney pie
 ---

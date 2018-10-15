@@ -21,8 +21,8 @@ collections:
       - {label: "Draft", name: "draft", widget: "boolean", default: true}
       - {label: "MenuSection", name: "menusection", widget: "select", options: ["entrees", "mains"]}
       - {label: "Price", name: "price", widget: "string"}
-      - {required: false, label: "GlutenFree", name: "glutenfree", widget: "boolean", default: false}
-      - {required: false, label: "OutofStock", name: "outofstock", widget: "boolean", default: false}
+      - {label: "GlutenFree", name: "glutenfree", widget: "boolean", default: false}
+      - {label: "OutofStock", name: "outofstock", widget: "boolean", default: false}
       - {label: "Featured Image", name: "thumbnail", widget: "image"}
       - {label: "Featured Image Alt Text", name: "thumbnailAlt", widget: "string"}
       - {label: "Body", name: "body", widget: "markdown"}

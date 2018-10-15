@@ -32,7 +32,70 @@ export const getGoogleArticle = (title, img, alt) => {
     }
   }
 
+//hasMenuSection - array, 
+  //typ menuSection, name entrees, hasMenuItem array
+    //menyItem, name, desc, offer, image, suitableForDiet, nutrition
+        //offer, price, priceCurrency
+const makeItem = (item) => {
+    console.log(`Menu makeItem `,item);
+    return {
+        "@type": "MenuItem",
+        "name": item.frontmatter.title,
+        "description": item.frontmatter.description,
+        "image": "https://goofy-archimedes-763914.netlify.com" + item.frontmatter.path,
+        "suitableForDiet": ["http://schema.org/GlutenFreeDiet", "http://schema.org/VeganDiet"],
+        "offers": {
+            "@type": "Offer",
+                    "price": item.frontmatter.price,
+                    "priceCurrency": "AUD"
+        }
+    }
+}
+const makeMenu = (menuitems) => {
+    let menu = [];
+    let sections = ['entrees', 'mains'];
+    sections.map(s => {
+        menu = [...menu,
+            menuitems
+            .filter(m => {
+                return m.node.frontmatter.menusection === s
+            })
+            .map(m => {
+                return makeItem(m.node)
+            })
+        ]
+    })
+    console.log(`Menu makeMenu`, menu);
+    return menu;
+}
+export const getGoogleRestaurant = (menuitems) => {
+    console.log(`Menu getMenu items`, menuitems);
+    return {
+        "@context": "http://schema.org/",
+        "@type": "Restaurant",
+        "acceptsReservations": "true",
+        "servesCuisine": "Indian",
+        "name": "Gekko",
+        "address": "1 infy loop, Mercedes Park, Vic",
+        "priceRange": "$$",
+        "telephone": "454 5454 454",
+        "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
+        "hasMenu": {
+            "@type":"Menu",
+            "name": "Gekko Menu",
+            "url": "https://goofy-archimedes-763914.netlify.com/",
+            "mainEntityOfPage": "https://goofy-archimedes-763914.netlify.com/",
+            "inLanguage":"English",
+           "hasMenuSection": makeMenu(menuitems)
+    }
+    
+}}
 
+
+
+
+
+/*
 export const getGoogleRestaurant = () => {
     return {
         "@context": "http://schema.org/",
@@ -177,3 +240,5 @@ export const getGoogleRestaurant = () => {
     }
     
 }}
+
+*/

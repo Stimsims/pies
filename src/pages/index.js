@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
-import {getGoogleArticle} from './../components/social/GoogleData';
+import {getGoogleArticle, getGoogleRestaurant} from './../components/social/GoogleData';
 import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
@@ -72,7 +72,7 @@ const IndexPage = (props) => {
         
         <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }}
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleRestaurant()) }}
             />
       </div>
     

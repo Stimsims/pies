@@ -88,12 +88,7 @@ export const getGoogleRestaurant = (menuitems) => {
             "@type": "Rating",
             "bestRating": "5",
             "ratingValue": "3",
-            "worstRating": "0",
-            "author": {
-                "@type": "Person",
-                "name": "PageVii",
-                "email": "paugevii@gmail.com"
-            }
+            "worstRating": "0"
         },
         "hasMenu": {
             "@type":"Menu",

@@ -2,45 +2,12 @@ import React from 'react'
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
-// import Icon from './../components/Icons/Icon.jsx';
-// import IconButton from './../components/Icons/IconButton.jsx';
-import SocialMedia from './../components/SocialMedia.js';
+import SocialMedia from '../components/social/SocialMedia';
+import {getGoogleArticle} from './../components/social/GoogleData';
 import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
-const getGoogleData = (title, img, alt) => {
-  return {
-      "@context": "http://schema.org/",
-          "@type": "Article",
-          "name": title,
-          "headline": "aricle headline",
-          "author": "Elaine Smith",
-          "publisher": {
-              "@type": "Organization",
-              "email": "test@gmail.com",
-              "name": "IoH",
-              "url": img,
-              "logo": {
-                  "@type": "ImageObject",
-                  "thumbnail": img,
-                  "url": img
-              }
-          },
-          "mainEntityOfPage":{
-              "@type": "CreativeWork",
-              "name": "my creative vid",
-              "about": "solving resident evil armor key puzzle"
-          },
-          "image": img,
-          "thumbnailUrl": img,
-          "description": "A classic apple pie.",
-          "about": "How people solve problems",
-          "articleSection":"People are a mystery. We break mysteries down by analyzing their simpeles examples. So, we're analyzing video game puzzles",
-          "timeRequired": "P30M",
-          "dateModified": "20181009T050200Z",
-          "datePublished": "20181009T050200Z"
-  }
-}
+
 const renderMenu = (data) => {
   console.log(`renderMenu `, data);
   return data.allMarkdownRemark.edges.map((n, i) => {
@@ -73,6 +40,9 @@ const renderMenu = (data) => {
 }
 const IndexPage = (props) => {
     console.log(`IndexPage props`, props);
+    let article = getGoogleArticle(props.data.site.siteMetadata.title,
+      props.data.headerImage.childImageSharp.fluid.src, 'the restaurant interior');
+      console.log(`IndexPage article`, article);
   return (
   
       <div>
@@ -93,17 +63,17 @@ const IndexPage = (props) => {
           <meta name="twitter:image" content={props.data.headerImage.childImageSharp.fluid.src}/>
           <meta name="twitter:image:alt" content={'the restaurant interior'} />
 
-          <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleData(props.data.site.siteMetadata.title,
-                  props.data.headerImage.childImageSharp.fluid.src, 'the restaurant interior')) }}
-            />
         </Helmet>
         <Title>What's on the Menu?</Title>
         <SocialMedia url={props.location.href} />
         <Menu>
           {renderMenu(props.data)}
         </Menu>
+        
+        <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }}
+            />
       </div>
     
 

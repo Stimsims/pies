@@ -84,6 +84,17 @@ export const getGoogleRestaurant = (menuitems) => {
         "priceRange": "$$",
         "telephone": "454 5454 454",
         "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
+        "rating": {
+            "@type": "rating",
+            "bestRating": "5",
+            "ratingValue": "3",
+            "worstRating": "0",
+            "author": {
+                "@type": "author",
+                "name": "PageVii",
+                "email": "paugevii@gmail.com"
+            }
+        },
         "hasMenu": {
             "@type":"Menu",
             "name": "Gekko Menu",

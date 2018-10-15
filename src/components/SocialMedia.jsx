@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import IconButton from './icons/IconButton.jsx';
 
 export default (props) => {
-    console.log(`Social media props`, props);
+   
     return (
         <Social>
             <IconButton icon="fb" onInput={()=>{

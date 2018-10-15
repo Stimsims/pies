@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import iFacebook from './icons/iconmonstr-facebook-4.svg';
-import iGooglePlus from './icons/iconmonstr-google-plus-4.svg';
-import iTwitter from './icons/iconmonstr-twitter-4.svg';
+import iFacebook from './img/iconmonstr-facebook-4.svg';
+import iGooglePlus from './img/iconmonstr-google-plus-4.svg';
+import iTwitter from './img/iconmonstr-twitter-4.svg';
 
 
 class Icon extends React.Component {

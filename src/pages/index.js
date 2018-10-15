@@ -4,7 +4,7 @@ import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
 // import Icon from './../components/Icons/Icon.jsx';
 // import IconButton from './../components/Icons/IconButton.jsx';
-import SocialMedia from './../components/SocialMedia.jsx';
+import SocialMedia from './../components/SocialMedia.js';
 import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 

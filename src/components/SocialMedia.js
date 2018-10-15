@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import IconButton from './icons/IconButton.jsx';
+import IconButton from './icons/IconButton.js';
 
 export default (props) => {
    

@@ -10,6 +10,7 @@ tags:
   - ingredient
 thumbnail: /images/bellpeppersfield.jpg
 thumbnailAlt: bell peppers growing in the field
-menuitem: steak
+menuitemtitle: Steak and Kidney Pie
+menuitemdesc: ''
 ---
 Check out farmer Abbot's field of capsicums. A pie inspired by these bell's is being roasted as this is written.

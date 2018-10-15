@@ -84,8 +84,8 @@ export const getGoogleRestaurant = (menuitems) => {
         "priceRange": "$$",
         "telephone": "454 5454 454",
         "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg",
-        "rating": {
-            "@type": "rating",
+        "starRating": {
+            "@type": "Rating",
             "bestRating": "5",
             "ratingValue": "3",
             "worstRating": "0",

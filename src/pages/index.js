@@ -133,7 +133,7 @@ const Item = styled.div`
       max-width: 300px;
     }
   }
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
     flex-direction: ${props=>props.index%2===0?'row':'row-reverse'};
     .item-image{
       z-index: 999;

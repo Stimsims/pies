@@ -87,7 +87,7 @@ const Contact = styled.div`
   display: flex;
   text-align: center;
   padding: 10px;
-  
+  flex-direction: column;
   .phone, .email{
       flex: 1;
       display: inline-block
@@ -97,45 +97,28 @@ const Contact = styled.div`
       margin: 10px;
   }
   .phone{
-    animation-name: right;
+    animation-name: slideRight;
     animation-duration: 1.5s;
     animation-timing-function: ease-in;
   }
   .email{
-    animation-name: left;
+    animation-name: slideLeft;
     animation-duration: 1.5s;
     animation-timing-function: ease-in;
   }
-  @keyframes left {
-    from {
-        transform:translateX(100%);
-      opacity: 0;
-    }
-    to {
-      transform:translateX(0%);
-      opacity: 1;
-    }
-    }
-    @keyframes right {
-        from {
-            transform:translateX(-100%);
-          opacity: 0;
-        }
-        to {
-          transform:translateX(0%);
-          opacity: 1;
-        }
-        }
+  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
+    flex-direction: row;
+  }
 `
 const Address = styled.div`
   text-align: center;
-  position: absolute;
+  position: static;
+  max-width: 1000px;
   z-index: 999;
-  left: 10px;
-  bottom: 10px;
   background-color: #ffffffcc;
   box-shadow: 0px 1px 1px 0px;
   padding: 10px;
+  margin-top: 10px;
   .heading{
       font-weight: bold;
       margin: 0;
@@ -143,17 +126,13 @@ const Address = styled.div`
   .address{
       margin: 0;
   }
-  animation-name: address;
+  animation-name: slideDown;
   animation-duration: 1s;
   animation-timing-function: ease-out;
-  @keyframes address {
-    from {
-        transform:translateY(-100%);
-      opacity: 0;
-    }
-    to {
-      transform:translateY(0%);
-      opacity: 1;
-    }
-    }
+  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
+    position: absolute;
+    max-width: 300px;
+    bottom: 10px;
+    left: 10px;
+  }
 `

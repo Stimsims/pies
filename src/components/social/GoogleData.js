@@ -97,9 +97,10 @@ export const getGoogleRestaurant = (menuitems) => {
             "mainEntityOfPage": "https://goofy-archimedes-763914.netlify.com/",
             "inLanguage":"English",
            "hasMenuSection": makeMenu(menuitems)
+        }
     }
     
-}}
+}
 
 
 

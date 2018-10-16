@@ -76,7 +76,7 @@ const Item = styled.div`
     background-color: lightgrey;
     transform: scale(1.03);
   }
-  @media only screen and (min-width: 700px) {
+  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
     .blog-date{margin: 0; float: right; display: inline-block; }
     .blog-title{ text-align: left; display: inline-block;}
   }

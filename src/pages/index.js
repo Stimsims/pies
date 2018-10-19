@@ -74,10 +74,11 @@ const IndexPage = (props) => {
           {renderMenu(props.data)}
         </Menu>
         
-        <script
+        {/* <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges)) }}
-            />
+            /> */}
+            <script type="application/ld+json">{JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges))}</script>
       </div>
     
 

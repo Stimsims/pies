@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import {animationMixIn} from './../components/animations/animation';
 
 const WherePage = (props) => {
-    console.log(`WherePage props`, props);
+    //console.log(`WherePage props`, props);
     return (
         <div>
             <Title>Where are we?</Title>

@@ -4,14 +4,15 @@ import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
 import {getGoogleArticle, getGoogleRestaurant} from './../components/social/GoogleData';
+import Sales from './../components/Sales.jsx';
 import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
 
 const renderMenu = (data) => {
-  console.log(`renderMenu `, data);
+ // console.log(`renderMenu `, data);
   return data.allMarkdownRemark.edges.map((n, i) => {
-    console.log(`renderMenu item `, n);
+   // console.log(`renderMenu item `, n);
     let {node} = n;
     return (
       <div key={node.frontmatter.path} >
@@ -39,10 +40,10 @@ const renderMenu = (data) => {
   })
 }
 const IndexPage = (props) => {
-    console.log(`IndexPage props url ` + props.data.allMarkdownRemark.edges, props);
+    //console.log(`IndexPage props url ` + props.data.allMarkdownRemark.edges, props);
     let article = getGoogleArticle(props.data.site.siteMetadata.title,
       `https://goofy-archimedes-763914.netlify.com${props.data.headerImage.childImageSharp.fluid.src}`, 'the restaurant interior');
-      console.log(`IndexPage article`, article);
+      //console.log(`IndexPage article`, article);
 
   return (
   
@@ -67,6 +68,8 @@ const IndexPage = (props) => {
         </Helmet>
         <Title>What's on the Menu?</Title>
         <SocialMedia url={props.location.href} />
+        <hr />
+        <Sales  />
         <Menu>
           {renderMenu(props.data)}
         </Menu>
@@ -163,6 +166,7 @@ export const query = graphql`
           }
       }
     }
+
     allMarkdownRemark(
       filter: {frontmatter: {layout: {eq: "menu"}}}
       sort: { order: DESC, fields: [frontmatter___date] }

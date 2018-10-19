@@ -8,7 +8,7 @@ export default function Template({
 }) {
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark;
-  console.log(`BlogTemplate data`, data);
+ // console.log(`BlogTemplate data`, data);
   return (
     <div className="blog-post-container">
         Blog post

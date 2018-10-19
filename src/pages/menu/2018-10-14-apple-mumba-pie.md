@@ -10,6 +10,7 @@ date: 2018-10-13T22:41:02.236Z
 draft: false
 menusection: entrees
 price: '7.00'
+discount: ''
 glutenfree: false
 outofstock: false
 thumbnail: /images/apple.jpg

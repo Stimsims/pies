@@ -26,7 +26,7 @@ const SecondPage = ({
       <Title>Updates</Title>
       <List>
         {edges.map(({node}, i) => {
-          console.log(`blog item `, node);
+         // console.log(`blog item `, node);
           return <Link key={node.id} to={node.frontmatter.path}><Item>
             <div>
               <h3 className="blog-title">{node.frontmatter.title}</h3>

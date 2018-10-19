@@ -18,4 +18,5 @@ export default (props) => {
 
 const Social = styled.div`
     text-align: center;
+    padding: 10px;
 `

@@ -4,5 +4,6 @@ export const animationMixIn = (dur, del, fill, ease, iter) => {
         ${del? 'animation-delay: ' + del + 's;':''}
         ${fill? 'animation-fill-mode: ' + fill + ';':''}
         animation-timing-function: ${ease? ease:'ease-in'};
+        ${iter? 'animation-iteration-count:' + iter + ";": ''}
     `
 }

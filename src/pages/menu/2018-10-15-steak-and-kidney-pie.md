@@ -11,6 +11,7 @@ date: 2018-10-14T19:22:32.145Z
 draft: true
 menusection: mains
 price: '10.50'
+discount: ''
 glutenfree: true
 outofstock: false
 thumbnail: /images/steak.jpg

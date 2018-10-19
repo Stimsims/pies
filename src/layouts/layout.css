@@ -3,8 +3,47 @@ html{
     overflow-x: hidden;
 
 }
+.react-cookie-banner{
+  text-align: left !important;
+  padding: 10px !important;
+  height: 60px !important;
+  background-color:rgba(0,0,0,0.7) !important;
+  position: fixed !important;
+  top: 0 !important;
+}
+.react-cookie-banner .cookie-message {
+  font-weight: 300;
+  color: white !important;
+  margin-right: 50px !important;
+  text-align: left !important;
+  display: block !important;
+}
+.button-close {
+  background-color: red !important;
+  right: 10px !important;
+  height: 40px !important;
+  color: white !important;
+  margin-top: 0 !important;
+  transform: translateY(-50%) !important;
+  animation-name: wiggle;
+  animation-duration: 2.5s;
+  animation-delay: 1s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 
-
+  transform-origin: center top;
+}
+@keyframes wiggle {
+    0% {transform: rotate(0deg)}
+    10% {transform: rotate(0deg) }
+    20% {transform: rotate(-5deg) }
+    30% {transform: rotate(10deg) }
+    40% {transform: rotate(-10deg) }
+    50% {transform: rotate(8deg) }
+    60% {transform: rotate(-5deg) }
+    70% {transform: rotate(0deg) }
+    90% {transform: rotate(0deg) }
+}
 /* html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;

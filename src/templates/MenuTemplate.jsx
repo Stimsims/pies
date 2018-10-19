@@ -33,14 +33,8 @@ export default function Template({
   console.log(`MenuTemplate allergies`, allergies);
   let schema = { 
       "@context": "http://schema.org/",
-      "@type": "MenuItem",
       "name": "pie",
-      "description": "a pie",
-      "offers": {
-          "@type": "Offer",
-                  "price": "9.00",
-                  "priceCurrency": "AUD"
-      }
+      "image": "https://goofy-archimedes-763914.netlify.com/static/scandic-c90942cfae912bb38f91d18b04b9ba6d-566f0.jpg"
   }
   let sJson = JSON.stringify(schema);
   console.log(`Meta json `, sJson);

@@ -35,7 +35,12 @@ export default function Template({
       "@context": "http://schema.org/",
       "@type": "MenuItem",
       "name": "pie",
-      "description": "a pie"
+      "description": "a pie",
+      "offers": {
+          "@type": "Offer",
+                  "price": "9.00",
+                  "priceCurrency": "AUD"
+      }
   }
   let sJson = JSON.stringify(schema);
   console.log(`Meta json `, sJson);
@@ -60,7 +65,8 @@ export default function Template({
 
             <Img
                 fluid={frontmatter.thumbnail.childImageSharp.fluid}
-                title={frontmatter.thumbnailAlt}
+                alt={frontmatter.thumbnailAlt}
+                title={frontmatter.title}
                 />
             
           </div>

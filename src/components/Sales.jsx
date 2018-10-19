@@ -65,7 +65,10 @@ export default class Sales extends React.Component{
                                             </div> 
                                         </div>
                                         <h3>SALE</h3>
-                                        <div>{s.node.html}</div>
+                                        <div
+                                            className="blog-post-content"
+                                            dangerouslySetInnerHTML={{ __html: s.node.html }}
+                                            />
                                     </div>
                                 })}
                             </Sale>

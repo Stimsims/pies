@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
+import Meta from './../components/social/Meta.jsx';
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -11,10 +12,20 @@ export default function Template({
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark;
   console.log(`MenuTemplate data`, data);
-  let allergies = [frontmatter.glutenfree?'GLUTEN FREE': null, 'DAIRY FREE', 'SUGAR FREE', 'EGG FREE', 'VEGAN'];
+  let allergies = [];
+  if(frontmatter.glutenfree) allergies.push('GLUTEN FREE');
+  if(frontmatter.dairyfree) allergies.push('DAIRY FREE');
+  if(frontmatter.vegan) allergies.push('VEGAN');
+  if(frontmatter.nutfree) allergies.push('NUT FREE');
+  if(frontmatter.refinedsugarfree) allergies.push('REFINED SUGAR FREE');
   console.log(`MenuTemplate allergies`, allergies);
   return (
     <div>
+          <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
+              image={frontmatter.thumbnail.childImageSharp.fluid.src} 
+              imageAlt={frontmatter.thumbnailAlt}
+              type="restaurant.menu_section" twitterCard="summary"
+               />
         <Heading>
            <h1>{frontmatter.title}</h1>
             <hr />
@@ -29,7 +40,7 @@ export default function Template({
 
             <Img
                 fluid={frontmatter.thumbnail.childImageSharp.fluid}
-                title={frontmatter.title}
+                title={frontmatter.thumbnailAlt}
                 />
             
           </div>
@@ -46,6 +57,47 @@ export default function Template({
     
   )
 }
+
+
+
+export const pageQuery = graphql`
+  query MenuTemplate($path: String!) {
+    headerImage: file(relativePath: { regex: "/boardplate/" }) {
+      childImageSharp{
+          fluid {
+              ...GatsbyImageSharpFluid
+          }
+      }
+    }
+    markdownRemark(frontmatter: { path: { eq: $path } }) {
+      html
+      frontmatter {
+        date(formatString: "MMMM DD, YYYY")
+        path
+        title
+        thumbnail {
+            childImageSharp {
+                fluid(maxWidth: 600) {
+                    ...GatsbyImageSharpFluid
+                  }
+            }
+          }
+        thumbnailAlt
+        slug
+        draft
+        menusection
+        price
+        discount
+        glutenfree
+        outofstock
+        description
+        
+      }
+    }
+  }
+`
+
+
 const Soc = styled.div`
   animation-name: slideUp;
   opacity: 0;
@@ -130,44 +182,6 @@ const Allergies = styled.div`
     &:nth-child(5){ animation-delay: 2s}
   }
 
-`
-
-
-export const pageQuery = graphql`
-  query MenuTemplate($path: String!) {
-    headerImage: file(relativePath: { regex: "/boardplate/" }) {
-      childImageSharp{
-          fluid {
-              ...GatsbyImageSharpFluid
-          }
-      }
-    }
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
-      frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        path
-        title
-        thumbnail {
-            childImageSharp {
-                fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
-                  }
-            }
-          }
-        thumbnailAlt
-        slug
-        draft
-        menusection
-        price
-        discount
-        glutenfree
-        outofstock
-        description
-        
-      }
-    }
-  }
 `
 
 /*

@@ -6,7 +6,7 @@ import SocialMedia from '../components/social/SocialMedia';
 import {getGoogleArticle, getGoogleRestaurant} from './../components/social/GoogleData';
 import Sales from './../components/Sales.jsx';
 import { Link } from 'gatsby';
-import Helmet from 'react-helmet';
+import Meta from './../components/social/Meta.jsx';
 
 
 const renderMenu = (data) => {
@@ -40,32 +40,15 @@ const renderMenu = (data) => {
   })
 }
 const IndexPage = (props) => {
-    //console.log(`IndexPage props url ` + props.data.allMarkdownRemark.edges, props);
-    let article = getGoogleArticle(props.data.site.siteMetadata.title,
-      `https://goofy-archimedes-763914.netlify.com${props.data.headerImage.childImageSharp.fluid.src}`, 'the restaurant interior');
-      //console.log(`IndexPage article`, article);
-
+    console.log(`IndexPage props `, props);
   return (
-  
       <div>
-        <Helmet>
-        <meta name="description" content="Gekko is a restaurant, here is its menu" />
-
-          <meta property="og:title" content={props.data.site.siteMetadata.title} />
-          <meta property="og:image" content={props.data.headerImage.childImageSharp.fluid.src}  />
-          <meta property="og:description" content="Gekko is a restaurant, here is its menu" />
-          <meta property="og:type" content="website" />
-          <meta property="og:site_name" content={props.data.site.siteMetadata.title} />
-
-          <meta name="twitter:card" content="summary"/>
-          <meta name="twitter:site" content="@Paygevii1"/>
-          <meta name="twitter:creator" content="@Paygevii1"/>
-          <meta name="twitter:title" content={props.data.site.siteMetadata.title}/>
-          <meta name="twitter:description" content={"Gekko is a restaurant, here is its menu"} />
-          <meta name="twitter:image" content={props.data.headerImage.childImageSharp.fluid.src}/>
-          <meta name="twitter:image:alt" content={'the restaurant interior'} />
-
-        </Helmet>
+        <Meta title={props.data.site.siteMetadata.title} description="Gekko is a restaurant, here is its menu"
+              image={props.data.headerImage.childImageSharp.fluid.src} 
+              imageAlt={"Gekko is a restaurant, here is its menu"}
+              type="restaurant.menu" twitterCard="summary"
+              other={[{property: 'restaurant:menu', content:'Gekko Menu'}]}
+               />
         <Title>What's on the Menu?</Title>
         <SocialMedia url={props.location.href} />
         <hr />
@@ -73,12 +56,7 @@ const IndexPage = (props) => {
         <Menu>
           {renderMenu(props.data)}
         </Menu>
-        
-        {/* <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges)) }}
-            /> */}
-            <script type="application/ld+json">{JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges))}</script>
+        <script type="application/ld+json">{JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges))}</script>
       </div>
     
 

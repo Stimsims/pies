@@ -35,14 +35,7 @@ export default function Template({
       "@context": "http://schema.org/",
       "@type": "MenuItem",
       "name": "pie",
-      "description": "a pie",
-      "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fluid.src,
-      "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
-      "offers": {
-          "@type": "Offer",
-                  "price": "9.00",
-                  "priceCurrency": "AUD"
-      }
+      "description": "a pie"
   }
   let sJson = JSON.stringify(schema);
   console.log(`Meta json `, sJson);
@@ -80,7 +73,7 @@ export default function Template({
           </div>
         </Container>
         <Soc><SocialMedia  /></Soc>
-        {/* <script type="application/ld+json">{sJson}</script> */}
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </div>
     
   )

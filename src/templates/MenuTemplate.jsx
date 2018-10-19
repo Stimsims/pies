@@ -40,7 +40,7 @@ export default function Template({
   console.log(`Meta json `, sJson);
   return (
     <div>
-          <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
+          {/* <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
               image={frontmatter.thumbnail.childImageSharp.fluid.src} 
               imageAlt={frontmatter.thumbnailAlt}
               type="restaurant.menu_section" twitterCard="summary"
@@ -72,8 +72,11 @@ export default function Template({
               
           </div>
         </Container>
-        <Soc><SocialMedia  /></Soc>
+        <Soc><SocialMedia  /></Soc> */}
+        <div>
         <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        </div>
+        
     </div>
     
   )

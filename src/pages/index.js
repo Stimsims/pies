@@ -51,7 +51,7 @@ const IndexPage = (props) => {
                />
         <Title>What's on the Menu?</Title>
         <SocialMedia url={props.location.href} />
-        <hr />
+       
         <Sales  />
         <Menu>
           {renderMenu(props.data)}

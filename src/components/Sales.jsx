@@ -51,9 +51,10 @@ export default class Sales extends React.Component{
                         return this.filterDates(e.node);
                     });
                     if(active){
-                        return <Sale>
+                        return <div>
+                                {active && active.length > 0 &&  <hr />}
                                 {active.map(s => {
-                                    return <div key={s.node.id}>
+                                    return <Sale><div key={s.node.id}>
                                         <div>
                                             <div className="startdate">
                                                 <h5>START</h5>
@@ -69,9 +70,9 @@ export default class Sales extends React.Component{
                                             className="blog-post-content"
                                             dangerouslySetInnerHTML={{ __html: s.node.html }}
                                             />
-                                    </div>
+                                    </div></Sale>
                                 })}
-                            </Sale>
+                            </div>
                     }else{
                         return null;
                     }

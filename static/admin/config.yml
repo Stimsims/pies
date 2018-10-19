@@ -64,5 +64,7 @@ collections:
             entry: title,searchFields: ['title'],multiselect: true,valueField: "title",displayFields: ["title"]}
           - {name: menuitemdesc,label: MenuItemsDesc,widget: relation,collection: menu,
             entry: description,searchFields: ['title'],multiselect: true,valueField: "description",displayFields: ["title"]}
+          - {name: menuitempath,label: MenuItemsPath,widget: relation,collection: menu,
+            entry: path,searchFields: ['title'],multiselect: true,valueField: "path",displayFields: ["title"]}
 
 

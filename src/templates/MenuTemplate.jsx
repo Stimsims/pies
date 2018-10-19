@@ -6,6 +6,18 @@ import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
 import Meta from './../components/social/Meta.jsx';
 
+/*
+        "@type": "MenuItem",
+        "name": item.frontmatter.title,
+        "description": item.frontmatter.description,
+        "image": "https://goofy-archimedes-763914.netlify.com" + item.frontmatter.path,
+        "suitableForDiet": [item.frontmatter.glutenfree?"http://schema.org/GlutenFreeDiet":null],
+        "offers": {
+            "@type": "Offer",
+                    "price": item.frontmatter.price,
+                    "priceCurrency": "AUD"
+        }
+*/
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
@@ -19,6 +31,19 @@ export default function Template({
   if(frontmatter.nutfree) allergies.push('NUT FREE');
   if(frontmatter.refinedsugarfree) allergies.push('REFINED SUGAR FREE');
   console.log(`MenuTemplate allergies`, allergies);
+  let schema = { 
+      "@context": "http://schema.org/",
+      "@type": "MenuItem",
+      "name": "pie",
+      "description": "a pie",
+      "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fluid.src,
+      "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
+      "offers": {
+          "@type": "Offer",
+                  "price": "9.00",
+                  "priceCurrency": "AUD"
+      }
+  }
   return (
     <div>
           <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
@@ -53,11 +78,15 @@ export default function Template({
           </div>
         </Container>
         <Soc><SocialMedia  /></Soc>
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
     </div>
     
   )
 }
 
+/*
+
+*/
 
 
 export const pageQuery = graphql`

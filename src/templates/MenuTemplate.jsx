@@ -21,7 +21,7 @@ import Meta from './../components/social/Meta.jsx';
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds our post data
+  const { site, markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark;
   console.log(`MenuTemplate data`, data);
   let allergies = [];
@@ -49,7 +49,7 @@ export default function Template({
   return (
     <div>
           <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
-              image={frontmatter.thumbnail.childImageSharp.fluid.src} 
+              image={site.siteMetadata.siteRoot + frontmatter.thumbnail.childImageSharp.fluid.src} 
               imageAlt={frontmatter.thumbnailAlt}
               type="restaurant.menu_section" twitterCard="summary"
                />
@@ -106,6 +106,9 @@ export default function Template({
 
 export const pageQuery = graphql`
   query MenuTemplate($path: String!) {
+    site {
+      ...SiteInformation
+    }
     headerImage: file(relativePath: { regex: "/boardplate/" }) {
       childImageSharp{
           fluid {

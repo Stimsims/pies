@@ -2,7 +2,8 @@ const path = require(`path`);
 //  'gatsby-plugin-page-transitions',
 module.exports = {
   siteMetadata: {
-    title: 'Gekko'
+    title: 'Gekko',
+    siteRoot: 'https://goofy-archimedes-763914.netlify.com'
   },
   plugins: [
     {

@@ -37,13 +37,13 @@ export default class Meta extends React.PureComponent{
                     console.log(`Meta static query data`, data);
                     return (
                         <Helmet>
-                            {title && <meta propety="og:title" content={title} />
-                                && <meta name="twitter:title" content={title} /> }
-                            {description && <meta name="description" content={description} />
-                                        && <meta property="og:description" content={description} />
-                                        && <meta name="twitter:description" content={description} />}
-                            {image && <meta property="od:image" content={image} />
-                                    && <meta name="twitter:image" content={image} />}
+                            {title && <meta propety="og:title" content={title} />}
+                            {title && <meta name="twitter:title" content={title} /> }
+                            {description && <meta name="description" content={description} />}
+                            {description && <meta property="og:description" content={description} />}
+                            {description && <meta name="twitter:description" content={description} />}
+                            {image && <meta property="og:image" content={image} />}
+                            {image && <meta name="twitter:image" content={image} />}
                             {imageAlt && <meta name="twitter:image:alt" content={imageAlt} />}
                             {type && <meta property="og:type" content="website" />}
                             <meta property="og:site_name" content={data.site.siteMetadata.title} />

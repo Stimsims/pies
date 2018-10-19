@@ -44,6 +44,8 @@ export default function Template({
                   "priceCurrency": "AUD"
       }
   }
+  let sJson = JSON.stringify(schema);
+  console.log(`Meta json `, sJson);
   return (
     <div>
           <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
@@ -78,7 +80,7 @@ export default function Template({
           </div>
         </Container>
         <Soc><SocialMedia  /></Soc>
-        <script type="application/ld+json">{JSON.stringify(schema)}</script>
+        {/* <script type="application/ld+json">{sJson}</script> */}
     </div>
     
   )

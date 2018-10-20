@@ -21,8 +21,9 @@ const renderMenu = (data) => {
           <Link key={node.frontmatter.path} to={node.frontmatter.path}>
             <div className="item-image">
               <Img
-                fluid={node.frontmatter.thumbnail.childImageSharp.fluid}
-                title={`Header image of restaurant`}
+                fixed={node.frontmatter.thumbnail.childImageSharp.fixed}
+                title={node.frontmatter.thumbnailAlt}
+                alt={node.frontmatter.thumbnailAlt}
                 index={i}
                 className={i%2===0?'imgleft':'imgright'}
                 />
@@ -161,8 +162,8 @@ export const query = graphql`
             description
             thumbnail {
               childImageSharp {
-                  fluid(maxWidth: 300) {
-                      ...GatsbyImageSharpFluid
+                  fixed(width: 300) {
+                      ...GatsbyImageSharpFixed
                   }
               }
             }

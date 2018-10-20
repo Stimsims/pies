@@ -59,9 +59,9 @@ const TemplateWrapper = (props) => {
                             >
                                 This website uses cookies to enhance its service to you.
                             </CookieConsent>
-                            <Header siteTitle={stat.site.siteMetadata.title} 
+                            {/* <Header siteTitle={stat.site.siteMetadata.title} 
                                         image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
-                                        stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
+                                        stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} /> */}
                             
                             <div
                                 style={{

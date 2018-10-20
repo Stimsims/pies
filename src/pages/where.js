@@ -18,20 +18,26 @@ const WherePage = (props) => {
                     <p>gekko@gmaik.com</p>
                 </div>
             </Contact>
-            <div style={{position: 'relative', textAlign: 'center'}}>
-                <Img
-                style={{height: '100px'}}
-                fixed={props.data.mapImage.childImageSharp.fixed}
-                title={`Map of the restaurant`}
-                />
-                <Address>
-                    <p className={'heading'}>Address</p>
-                    <p className={'address'}>1 Infi Loop</p>
-                    <p className={'address'}>Mercedes Park</p>
-                    <p className={'address'}>CA 400293</p>
-                    <p className={'address'}>USA</p>
-                </Address>
-            </div>
+            <Map>
+                <div className="map">
+                    <Img
+                    fixed={props.data.mapImage.childImageSharp.fixed}
+                    title={`Map of the restaurant`}
+                    />
+                </div>
+
+                <div className='map-address'>
+                    <div>
+                        <div className="center-vert">
+                            <p className={'heading'}>Address</p>
+                            <p className={'address'}>1 Infi Loop</p>
+                            <p className={'address'}>Mercedes Park</p>
+                            <p className={'address'}>CA 400293</p>
+                            <p className={'address'}>USA</p>
+                        </div>
+                    </div>
+                </div>
+            </Map>
  
         </div>
     )
@@ -48,14 +54,14 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/restaurant/" }) {
       childImageSharp {
-          fixed(width: 300) {
+          fixed(width: 300, height: 200) {
               ...GatsbyImageSharpFixed
           }
       }
     }
     mapImage: file(relativePath: { regex: "/googlestaticmap/" }) {
         childImageSharp {
-            fixed(width: 300, height: 100){
+            fixed(width: 300, height: 187){
                 ...GatsbyImageSharpFixed
             }
         }
@@ -111,27 +117,61 @@ const Contact = styled.div`
     flex-direction: row;
   }
 `
-const Address = styled.div`
+const Map = styled.div`
   text-align: center;
-  position: static;
-  max-width: 1000px;
-  z-index: 999;
-  background-color: #ffffffcc;
-  box-shadow: 0px 1px 1px 0px;
-  padding: 10px;
-  margin-top: 10px;
-  .heading{
-      font-weight: bold;
-      margin: 0;
+  .map{
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0px;
   }
-  .address{
-      margin: 0;
+  .map-address{
+        width: 100%; height: 187px;
+        text-align: center;
+        z-index: 999;
+        div{
+            background-color: #ffffffcc;
+            box-shadow: 0px 1px 1px 0px;
+            height: 100%;
+            position: relative;
+            .center-vert{
+                height: auto;
+                top: 50%;
+                transform: translateY(-50%);
+                box-shadow: 0px 0px 0px 0px;
+            }
+        }
+        .heading{
+            font-weight: bold;
+            margin: 0;
+        }
+        .address{
+            margin: 0;
+        }
+        animation-name: slideDown;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
+          flex-direction: row;
+        }
   }
-  animation-name: slideDown;
-  animation-duration: 1s;
-  animation-timing-function: ease-out;
-
+  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
+    text-align: left;
+    .map{
+        float: left;
+        width: 50%;
+    }
+    .map-address{
+        float: right;
+        width: 50%;
+        
+        div{
+            margin: auto; width: 300px;
+            box-shadow: 0px 0px 0px 0px;
+        }
+    }
+  }
 `
+
 /*
   @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
     position: absolute;

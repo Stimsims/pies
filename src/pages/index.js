@@ -25,7 +25,7 @@ const renderMenu = (data) => {
                 title={node.frontmatter.thumbnailAlt}
                 alt={node.frontmatter.thumbnailAlt}
                 index={i}
-                style={{width: '300px', height: '300px'}}
+                style={{width: '300px', height: '187px'}}
                 className={i%2===0?'imgleft':'imgright'}
                 />
             </div>
@@ -140,7 +140,7 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/scandic/" }) {
       childImageSharp{
-          fixed(width: 300, height: 200) {
+          fixed(width: 300, height: 187) {
               ...GatsbyImageSharpFixed
           }
       }
@@ -161,7 +161,7 @@ export const query = graphql`
             description
             thumbnail {
               childImageSharp {
-                  fixed(width: 300, height: 200) {
+                  fixed(width: 300, height: 187) {
                       ...GatsbyImageSharpFixed
                   }
               }

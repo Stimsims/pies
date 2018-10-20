@@ -33,10 +33,22 @@ class Header extends React.Component{
       <Banner>
             <ImgWrapper>
                   <Img
-                      fluid={image}
+                      fixed={image}
                       title={`Header image of restaurant`}
                       style={{height: '200px'}}
                       />
+                  <div className="overlay" style={{height: '200px'}}>
+
+                  </div>
+                  <Img
+                      className="mirror"
+                      fixed={image}
+                      title={`Header image of restaurant`}
+                      style={{height: '200px'}}
+                      />
+                  <div className="overlaymirror" style={{width: '300px', height: '200px'}}>
+
+                  </div>
             </ImgWrapper>
 
         <Heading>
@@ -60,13 +72,47 @@ const Banner = styled.div`
 `
 const ImgWrapper = styled.div`
   background-color: white;
+  width: 100%;
+  .mirror.gatsby-image-wrapper, .overlaymirror{
+    display: none !important; width: 300px; 
+  }
+  .overlay{
+    background: linear-gradient(to left, white 15%, transparent 50%,  white 85%);
+    position: fixed; height: 100%; top: 0; left: 0; right: 0; width: 100%;
+    display: inline-block;
+  }
   .gatsby-image-wrapper{
+    margin: auto !important;
+    display: block !important;
     img{
       filter: saturate(100%);
       transition: all 1s ease;
       animation-name: filters;
       animation-duration: 2s;
       animation-fill-mode: forwards;
+    }
+  }
+  @media only screen and (min-width: 650px) {
+    .mirror.gatsby-image-wrapper{
+      display: inline-block !important;
+    }
+    .mirror{
+      position: absolute !important; right: 0; top:0; 
+      transform: scaleX(-1);  display: inline-block !important;
+    }
+    .overlaymirror{
+      background: radial-gradient(ellipse at top left, transparent, white 80%);
+      position: absolute; top: 0; right: 0; float: right;
+      display: inline-block !important;
+      transform: scaleX(-1);  
+    }
+    .overlay{
+      background: radial-gradient(ellipse at top left, transparent, white 80%);
+      position: absolute; top: 0;
+      width: 300px; display: inline-block;
+    }
+    .gatsby-image-wrapper{
+      margin: none !important; display: inline-block !important;
     }
   }
   @keyframes filters {

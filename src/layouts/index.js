@@ -27,8 +27,8 @@ const TemplateWrapper = (props) => {
                       }
                       headerImage: file(relativePath: { regex: "/octopus/" }) {
                         childImageSharp  {
-                            fluid{
-                                ...GatsbyImageSharpFluid
+                            fixed(width: 300){
+                                ...GatsbyImageSharpFixed
                             }
                         }
                     }
@@ -62,7 +62,8 @@ const TemplateWrapper = (props) => {
                             {/* <Header siteTitle={stat.site.siteMetadata.title} 
                                         image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
                                         stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} /> */}
-                            
+                                 <Header siteTitle={stat.site.siteMetadata.title} 
+                                        image={stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fixed:null} />
                             <div
                                 style={{
                                 margin: `0 auto`,

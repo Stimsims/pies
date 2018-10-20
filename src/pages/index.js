@@ -46,7 +46,7 @@ const IndexPage = (props) => {
   return (
       <div>
         <Meta title={props.data.site.siteMetadata.title} description="Gekko is a restaurant, here is its menu"
-              image={props.data.site.siteMetadata.siteRoot + props.data.headerImage.childImageSharp.fluid.src} 
+              image={props.data.site.siteMetadata.siteRoot + props.data.headerImage.childImageSharp.fixed.src} 
               imageAlt={"Gekko is a restaurant, here is its menu"}
               type="restaurant.menu" twitterCard="summary"
               other={[{property: 'restaurant:menu', content:'Gekko Menu'}]}

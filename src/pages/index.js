@@ -25,7 +25,7 @@ const renderMenu = (data) => {
                 title={node.frontmatter.thumbnailAlt}
                 alt={node.frontmatter.thumbnailAlt}
                 index={i}
-                style={{width: '300px'}}
+                style={{width: '300px', height: '300px'}}
                 className={i%2===0?'imgleft':'imgright'}
                 />
             </div>

@@ -20,6 +20,7 @@ const WherePage = (props) => {
             </Contact>
             <div style={{position: 'relative', textAlign: 'center'}}>
                 <Img
+                style={{height: '50px'}}
                 fixed={props.data.mapImage.childImageSharp.fixed}
                 title={`Map of the restaurant`}
                 />

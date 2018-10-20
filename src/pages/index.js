@@ -140,7 +140,7 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/scandic/" }) {
       childImageSharp{
-          fixed(width: 300) {
+          fixed(width: 300, height: 200) {
               ...GatsbyImageSharpFixed
           }
       }
@@ -161,7 +161,7 @@ export const query = graphql`
             description
             thumbnail {
               childImageSharp {
-                  fixed(width: 300) {
+                  fixed(width: 300, height: 200) {
                       ...GatsbyImageSharpFixed
                   }
               }

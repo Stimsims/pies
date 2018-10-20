@@ -1,5 +1,5 @@
 import Typography from "typography"
-import sternTheme from "typography-theme-stern-grove"
+import sternTheme from "typeface-merriweather"
 
 const typography = new Typography(sternTheme)
 

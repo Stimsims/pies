@@ -114,14 +114,12 @@ const Item = styled.div`
     text-align:center;
     .gatsby-image-wrapper{
       margin: auto;
-      max-width: 300px;
     }
   }
   @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
     flex-direction: ${props=>props.index%2===0?'row':'row-reverse'};
     .item-image{
       z-index: 999;
-      width: 300px;
     }
     .textbox{
       animation-name: ${props=>props.index%2===0?'slideLeft':'slideRight'};
@@ -142,8 +140,8 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/scandic/" }) {
       childImageSharp{
-          fluid {
-              ...GatsbyImageSharpFluid
+          fixed(width: 300) {
+              ...GatsbyImageSharpFixed
           }
       }
     }

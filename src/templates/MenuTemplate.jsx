@@ -36,7 +36,7 @@ export default function Template({
       "@type": "MenuItem",
       "name": "pie",
       "description": "a pie",
-      "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fluid.src,
+      "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fixed.src,
       "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
       "offers": {
           "@type": "Offer",
@@ -44,12 +44,10 @@ export default function Template({
           "priceCurrency": "AUD"
       }
   }
-  let sJson = JSON.stringify(schema);
-  console.log(`Meta json `, sJson);
   return (
     <div>
           <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
-              image={site.siteMetadata.siteRoot + frontmatter.thumbnail.childImageSharp.fluid.src} 
+              image={site.siteMetadata.siteRoot + frontmatter.thumbnail.childImageSharp.fixed.src} 
               imageAlt={frontmatter.thumbnailAlt}
               type="restaurant.menu_section" twitterCard="summary"
                />
@@ -66,7 +64,7 @@ export default function Template({
           <div className="menu-picture">
 
             <Img
-                fluid={frontmatter.thumbnail.childImageSharp.fluid}
+                fixed={frontmatter.thumbnail.childImageSharp.fixed}
                 alt={frontmatter.thumbnailAlt}
                 title={frontmatter.title}
                 />
@@ -86,7 +84,7 @@ export default function Template({
               "@type": "MenuItem",
               "name": "pie",
               "description": "a pie",
-              "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fluid.src,
+              "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fixed.src,
               "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
               "offers": {
                   "@type": "Offer",
@@ -111,8 +109,8 @@ export const pageQuery = graphql`
     }
     headerImage: file(relativePath: { regex: "/boardplate/" }) {
       childImageSharp{
-          fluid {
-              ...GatsbyImageSharpFluid
+          fixed(width: 300){
+              ...GatsbyImageSharpFixed
           }
       }
     }
@@ -124,8 +122,8 @@ export const pageQuery = graphql`
         title
         thumbnail {
             childImageSharp {
-                fluid(maxWidth: 600) {
-                    ...GatsbyImageSharpFluid
+                fixed(width: 300) {
+                    ...GatsbyImageSharpFixed
                   }
             }
           }
@@ -170,6 +168,7 @@ const Container = styled.div`
 
   .menu-picture{
     flex: none;
+    text-align: center;
     h1, p, hr{ text-align: center; margin: 0;}
     h1{padding: 3px;}
   }

@@ -18,9 +18,9 @@ const WherePage = (props) => {
                     <p>gekko@gmaik.com</p>
                 </div>
             </Contact>
-            <div style={{position: 'relative'}}>
+            <div style={{position: 'relative', textAlign: 'center'}}>
                 <Img
-                fluid={props.data.mapImage.childImageSharp.fluid}
+                fixed={props.data.mapImage.childImageSharp.fixed}
                 title={`Map of the restaurant`}
                 />
                 <Address>
@@ -47,15 +47,15 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/restaurant/" }) {
       childImageSharp {
-          fluid {
-              ...GatsbyImageSharpFluid
+          fixed(width: 300) {
+              ...GatsbyImageSharpFixed
           }
       }
     }
     mapImage: file(relativePath: { regex: "/googlestaticmap/" }) {
         childImageSharp {
-            fluid {
-                ...GatsbyImageSharpFluid
+            fixed(width: 300){
+                ...GatsbyImageSharpFixed
             }
         }
       }
@@ -129,10 +129,13 @@ const Address = styled.div`
   animation-name: slideDown;
   animation-duration: 1s;
   animation-timing-function: ease-out;
+
+`
+/*
   @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
     position: absolute;
     max-width: 300px;
     bottom: 10px;
     left: 10px;
   }
-`
+*/

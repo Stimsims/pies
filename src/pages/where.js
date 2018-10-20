@@ -20,7 +20,7 @@ const WherePage = (props) => {
             </Contact>
             <div style={{position: 'relative', textAlign: 'center'}}>
                 <Img
-                style={{height: '50px'}}
+                style={{height: '100px'}}
                 fixed={props.data.mapImage.childImageSharp.fixed}
                 title={`Map of the restaurant`}
                 />
@@ -55,7 +55,7 @@ export const query = graphql`
     }
     mapImage: file(relativePath: { regex: "/googlestaticmap/" }) {
         childImageSharp {
-            fixed(width: 300){
+            fixed(width: 300, height: 100){
                 ...GatsbyImageSharpFixed
             }
         }

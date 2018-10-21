@@ -11,13 +11,13 @@ collections:
     files:
       - label: "About Page"
         name: "about"
-        file: "src/pages/about.yml"
+        file: "src/pages/ab.js"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Intro, name: intro, widget: markdown}
       - label: "Locations Page"
         name: "locations"
-        file: "site/content/locations.yml"
+        file: "src/pages/loc.js"
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Intro, name: intro, widget: markdown}

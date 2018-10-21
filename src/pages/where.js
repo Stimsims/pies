@@ -19,24 +19,14 @@ const WherePage = (props) => {
                 </div>
             </Contact>
             <Map>
-                <div className="map">
-                    <Img
-                    fixed={props.data.mapImage.childImageSharp.fixed}
-                    title={`Map of the restaurant`}
-                    />
-                </div>
-
-                <div className='map-address'>
-                    <div>
-                        <div className="center-vert">
-                            <p className={'heading'}>Address</p>
-                            <p className={'address'}>1 Infi Loop</p>
-                            <p className={'address'}>Mercedes Park</p>
-                            <p className={'address'}>CA 400293</p>
-                            <p className={'address'}>USA</p>
-                        </div>
-                    </div>
-                </div>
+            <iframe src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyCgQyhCVnCYg0mgr0hI2qRavNE3G9fHSho
+                        &q=Fairmont+Empress,Victoria+BC
+                        &attribution_source=Google+Maps+Embed+API
+                        &attribution_web_url=http://www.fairmont.com/empress-victoria/
+                        &attribution_ios_deep_link_id=comgooglemaps://?daddr=Fairmont+Empress,+Victoria,+BC`}
+                        width="100%" height="300px"
+                        frameBorder="0"
+                        >Browser not compatible.</iframe>
             </Map>
  
         </div>
@@ -119,56 +109,11 @@ const Contact = styled.div`
 `
 const Map = styled.div`
   text-align: center;
+  padding: 20px;
+  position: relative;
   .map{
-      width: 100%;
+      width: 100%; height: 300px;
       text-align: center;
-      margin-bottom: 0px;
-  }
-  .map-address{
-        width: 100%; height: 187px;
-        text-align: center;
-        z-index: 999;
-        div{
-            background-color: #ffffffcc;
-            box-shadow: 0px 1px 1px 0px;
-            height: 100%;
-            position: relative;
-            .center-vert{
-                height: auto;
-                top: 50%;
-                transform: translateY(-50%);
-                box-shadow: 0px 0px 0px 0px;
-            }
-        }
-        .heading{
-            font-weight: bold;
-            margin: 0;
-        }
-        .address{
-            margin: 0;
-        }
-        animation-name: slideDown;
-        animation-duration: 1s;
-        animation-timing-function: ease-out;
-        @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
-          flex-direction: row;
-        }
-  }
-  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
-    text-align: left;
-    .map{
-        float: left;
-        width: 50%;
-    }
-    .map-address{
-        float: right;
-        width: 50%;
-        
-        div{
-            margin: auto; width: 300px;
-            box-shadow: 0px 0px 0px 0px;
-        }
-    }
   }
 `
 

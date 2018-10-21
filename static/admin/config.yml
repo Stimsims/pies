@@ -15,12 +15,6 @@ collections:
         fields:
           - {label: Title, name: title, widget: string}
           - {label: Intro, name: intro, widget: markdown}
-      - label: "Locations Page"
-        name: "locations"
-        file: "src/pages/loc.js"
-        fields:
-          - {label: Title, name: title, widget: string}
-          - {label: Intro, name: intro, widget: markdown}
 
   - name: "menu" # Used in routes, e.g., /admin/collections/blog
     label: "Menu" # Used in the UI

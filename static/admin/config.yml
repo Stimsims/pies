@@ -11,9 +11,10 @@ collections:
     files:
       - label: "Privacy Page"
         name: "privacy"
-        file: "src/pages/privacy.json"
+        file: "src/pages/pages/privacy.json"
         fields:
           - {label: Title, name: title, widget: string}
+          - {label: Path, name: path, widget: string}
           - {label: Intro, name: intro, widget: markdown}
 
   - name: "menu" # Used in routes, e.g., /admin/collections/blog

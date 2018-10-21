@@ -23,6 +23,7 @@ exports.createPages = ({ graphql, actions }) => {
     return new Promise((resolve, reject) => {
       const blogPostTemplate = path.resolve(`src/templates/BlogTemplate.jsx`);
       const menuPostTemplate = path.resolve(`src/templates/MenuTemplate.jsx`);
+      const pagePostTemplate = path.resolve(`src/templates/PageTemplate.jsx`);
       // Query for markdown nodes to use in creating pages.
       resolve(
         graphql(
@@ -38,6 +39,14 @@ exports.createPages = ({ graphql, actions }) => {
                   }
                 }
               }
+              allPagesJson {
+                edges {
+                  node {
+                    title
+                    path
+                  }
+                }
+              }
             }
           `
         )
@@ -46,7 +55,17 @@ exports.createPages = ({ graphql, actions }) => {
           if (result.errors) {
             reject(result.errors)
           }
-  
+          //create pages for each page.json file 
+          result.data.allPagesJson.edges
+          .forEach(({node}) => {
+            console.log(`page json node`, node);
+            createPage({
+              path: node.path,
+              component: pagePostTemplate,
+              context: {
+              },
+            })
+          })
           // Create pages for each markdown file.
           result.data.allMarkdownRemark.edges
           .forEach(({ node }) => {

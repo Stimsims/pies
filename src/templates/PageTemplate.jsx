@@ -2,6 +2,11 @@ import React from 'react';
 
 export default class Page extends React.Component{
     render(){
-        return <p>page</p>
+        console.log(`Page Template props`, this);
+        return (
+            <div>
+
+            </div>
+        )
     }
 }

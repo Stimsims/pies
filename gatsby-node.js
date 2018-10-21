@@ -44,6 +44,7 @@ exports.createPages = ({ graphql, actions }) => {
                   node {
                     title
                     path
+                    body
                   }
                 }
               }
@@ -63,6 +64,7 @@ exports.createPages = ({ graphql, actions }) => {
               path: node.path,
               component: pagePostTemplate,
               context: {
+                path: node.path, body: node.body, title: node.title
               },
             })
           })

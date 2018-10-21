@@ -24,9 +24,20 @@ const WherePage = (props) => {
                         &attribution_source=Google+Maps+Embed+API
                         &attribution_web_url=http://www.fairmont.com/empress-victoria/
                         &attribution_ios_deep_link_id=comgooglemaps://?daddr=Fairmont+Empress,+Victoria,+BC`}
-                        width="100%" height="300px"
+                        width="100%" height="300px" title="google map address 1 infi loop, mercedes park, CA 400293, USA"
                         frameBorder="0"
-                        >Browser not compatible.</iframe>
+                        > 
+                        <Address className='map-address'>
+                            <p className={'address'}>browser not compatible with Google Maps</p>
+                            <hr />
+                            <p className={'heading'}>Address</p>
+                            <p className={'address'}>1 Infi Loop</p>
+                            <p className={'address'}>Mercedes Park</p>
+                            <p className={'address'}>CA 400293</p>
+                            <p className={'address'}>USA</p>
+                        </Address>
+                        
+                </iframe>
             </Map>
  
         </div>
@@ -115,8 +126,44 @@ const Map = styled.div`
       width: 100%; height: 300px;
       text-align: center;
   }
-`
 
+`
+const Address = styled.div`
+
+display: inline;
+        position: absolute;
+        top: 20px; right: 10px; 
+        text-align: center;
+        z-index: 999;
+        background: white;
+        padding: 10px;
+        border: 2px solid grey
+        div{
+            background-color: #ffffffcc;
+            box-shadow: 0px 1px 1px 0px;
+            height: 100%;
+            position: relative;
+            .center-vert{
+                height: auto;
+                top: 50%;
+                transform: translateY(-50%);
+                box-shadow: 0px 0px 0px 0px;
+            }
+        }
+        .heading{
+            font-weight: bold;
+            margin: 0;
+        }
+        .address{
+            margin: 0;
+        }
+        animation-name: slideDown;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+        @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
+          flex-direction: row;
+        }
+`
 /*
   @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
     position: absolute;

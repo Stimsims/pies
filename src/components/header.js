@@ -27,7 +27,8 @@ class Header extends React.Component{
         let links = [
                 {text: 'where', to: '/where'},
                 {text: 'menu', to: '/'},
-                {text: 'blog', to: '/blog'}
+                {text: 'blog', to: '/blog'},
+                {text: 'privacy', to: '/privacy'}
               ];
     return (
       <Banner>
@@ -178,8 +179,11 @@ const Menu = styled.div`
   a:nth-child(2){
     animation-delay: 2.5s;
   }
-  a:last-child{
+  a:nth-child(3){
     animation-delay: 3s;
+  }
+  a:last-child{
+    animation-delay: 3.5s;
   }
   @keyframes drop {
    from{

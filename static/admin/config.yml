@@ -6,6 +6,16 @@ media_folder: static/images
 public_folder: /images
 
 collections:
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Privacy Page"
+        name: "privacy"
+        file:  "src/pages/privacy.js"
+        fields:
+          - {label: Title, name: title, widget: string}
+          - {label: Statement, name: statement, widget: markdown}
+
   - name: "menu" # Used in routes, e.g., /admin/collections/blog
     label: "Menu" # Used in the UI
     folder: "src/pages/menu" # The path to the folder where the documents are stored

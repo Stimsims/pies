@@ -73,7 +73,7 @@ class Header extends React.Component{
 
 export default Header;
 const Banner = styled.div`
-  width: 100%; height: 200px; position: relative; z-index: 9999;
+  width: 100%; height: 200px; position: relative; z-index: 9999; background-color: green;
 `
 const ImgWrapper = styled.div`
   background-color: white;

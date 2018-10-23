@@ -32,7 +32,7 @@ class Header extends React.Component{
               ];
     return (
       <Banner>
-            <ImgWrapper>
+            {/* <ImgWrapper>
                   <Img
                       fixed={image}
                       title={`Header image of restaurant`}
@@ -50,8 +50,12 @@ class Header extends React.Component{
                   <div className="overlaymirror" style={{width: '300px', height: '200px'}}>
 
                   </div>
-            </ImgWrapper>
-
+            </ImgWrapper> */}
+                  <Img
+                      fixed={image}
+                      title={`Header image of restaurant`}
+                      style={{height: '200px', position: 'relative', width: '100%', maxWidth:"800px", margin: 'auto'}}
+                      />
         <Heading>
           <h1 className="insetshadow">Gekko</h1>
           <Menu>

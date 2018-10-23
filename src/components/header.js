@@ -54,7 +54,7 @@ class Header extends React.Component{
                   <Img
                       fixed={image}
                       title={`Header image of restaurant`}
-                      style={{height: '200px', position: 'relative', width: '100%', maxWidth:"800px", margin: 'auto'}}
+                      style={{height: '200px', position: 'relative', width: '100%'}}
                       />
         <Heading>
           <h1 className="insetshadow">Gekko</h1>

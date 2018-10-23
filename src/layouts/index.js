@@ -25,9 +25,9 @@ const TemplateWrapper = (props) => {
                           title
                         }
                       }
-                      headerImage: file(relativePath: { regex: "/octopus/" }) {
+                      headerImage: file(relativePath: { regex: "/restaurant/" }) {
                         childImageSharp  {
-                            fluid{
+                            fluid(sizes: "100vw"){
                                 ...GatsbyImageSharpFluid
                             }
                         }

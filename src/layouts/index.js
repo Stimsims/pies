@@ -7,8 +7,8 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled, {ThemeProvider} from 'styled-components';
 import CookieConsent from "react-cookie-consent";
 
-import './../components/animations/slides.css';
-import './../components/animations/fades.css';
+// import './../components/animations/slides.css';
+// import './../components/animations/fades.css';
 import './../components/styles/text.css';
 import "./layout.css"
 import theme from './theme.js';

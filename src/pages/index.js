@@ -1,52 +1,21 @@
 import React from 'react'
 import styled from 'styled-components';
-import Img from 'gatsby-image';
+
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
 import {getGoogleArticle, getGoogleRestaurant} from './../components/social/GoogleData';
 import Sales from './../components/Sales.jsx';
 import { Link } from 'gatsby';
 import Meta from './../components/social/Meta.jsx';
+import MenuItem from './../components/MenuItem.jsx';
 
 
-const renderMenu = (data) => {
- // console.log(`renderMenu `, data);
-  return data.allMarkdownRemark.edges.map((n, i) => {
-   // console.log(`renderMenu item `, n);
-    let {node} = n;
-    return (
-      <div key={node.frontmatter.path} >
-        <hr />
-        <Item index={i}>
-          <Link key={node.frontmatter.path} to={node.frontmatter.path}>
-            <div className="item-image">
-              <Img
-                fixed={node.frontmatter.thumbnail.childImageSharp.fixed}
-                title={node.frontmatter.thumbnailAlt}
-                alt={node.frontmatter.thumbnailAlt}
-                index={i}
-                style={{width: '300px', height: '187px'}}
-                className={i%2===0?'imgleft':'imgright'}
-                />
-            </div>
-          </Link>
-          <div className={`textbox ${i%2===0?'textleft':'textright'}`}>
-            <h3 className="menu-item-title">{node.frontmatter.title}</h3>
-            <p className="menu-item-description">{node.frontmatter.description}</p>
-            {node.frontmatter.glutenfree && <p className="menu-item-allergies">gluten free</p>}
-          </div>
-          
-        </Item>
-      </div>
-    )
-  })
-}
 const IndexPage = (props) => {
     console.log(`IndexPage props `, props);
   return (
       <div>
         <Meta title={props.data.site.siteMetadata.title} description="Gekko is a restaurant, here is its menu"
-              image={props.data.site.siteMetadata.siteRoot + props.data.headerImage.childImageSharp.fixed.src} 
+              image={props.data.site.siteMetadata.siteRoot + props.data.headerImage.childImageSharp.fluid.src} 
               imageAlt={"Gekko is a restaurant, here is its menu"}
               type="restaurant.menu" twitterCard="summary"
               other={[{property: 'restaurant:menu', content:'Gekko Menu'}]}
@@ -56,7 +25,16 @@ const IndexPage = (props) => {
        
         <Sales  />
         <Menu>
-          {renderMenu(props.data)}
+          {props.data.allMarkdownRemark.edges.map((n, i) => {
+            console.log(`Index page menuItem `, n);
+                return (
+                  <div key={n.node.frontmatter.path} >
+                    <hr />
+                    <MenuItem node={n.node} index={i} />
+            
+                  </div>
+                )
+          })}
         </Menu>
         <script type="application/ld+json">{JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges))}</script>
       </div>
@@ -80,58 +58,7 @@ const Menu = styled.div`
   min-height: 100px;
   padding: 10px;
 `
-const Item = styled.div`
-  width: 100%; 
-  text-align: center;
-  margin: 0; padding: 0;
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0 40px 0;
-  .textbox{
-    flex: 1;
-    width: 100%; max-width: 300px;
-    text-align: center;
-    display: inline;
-    margin: auto;
-    position: relative;
-    transform: translateX(${props=>props.index%2===0?'':'-'}200%);
-    animation-name: slideDown;
-    ${props => {
-      return animationMixIn('1', '1.5', 'forwards', 'ease-in');
-    }}
-    z-index: 19;
-    .menu-item-title{
-      margin: 5px;
-    }
-    .menu-item-allergies{
-      position: absolute; width: 100%;
-      bottom: 0px; margin: 0;
-    }
-  }
-  .item-image{
-    z-index: 999;
-    flex: 1;
-    text-align:center;
-    .gatsby-image-wrapper{
-      margin: auto;
-    }
-  }
-  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
-    flex-direction: ${props=>props.index%2===0?'row':'row-reverse'};
-    .item-image{
-      z-index: 999;
-    }
-    .textbox{
-      animation-name: ${props=>props.index%2===0?'slideLeft':'slideRight'};
-      max-width: 3000px;
-    }
-  }
-  @keyframes slideTextLarge {
-    0% {transform: translateY(-100%); opacity: 0;}
-    50% {opacity: 0;}
-    100% { transform: translateY(0%); opacity: 1;}
-}
-`
+
 
 export const query = graphql`
   query IndexPage {
@@ -140,12 +67,11 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/scandic/" }) {
       childImageSharp{
-          fixed(width: 300, height: 187) {
-              ...GatsbyImageSharpFixed
+          fluid(sizes: "100vw") {
+              ...GatsbyImageSharpFluid
           }
       }
     }
-
     allMarkdownRemark(
       filter: {frontmatter: {layout: {eq: "menu"}}}
       sort: { order: DESC, fields: [frontmatter___date] }

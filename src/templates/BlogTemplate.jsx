@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image";
 import styled from 'styled-components';
-import { checkPropTypes } from "prop-types";
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
@@ -25,9 +24,6 @@ export default function Template({
               dangerouslySetInnerHTML={{ __html: html }}
               />
           </div>
-          {frontmatter.menuitem && <div className="c2">
-
-          </div>}
         </Container>
     </div>
   )
@@ -59,7 +55,7 @@ export const pageQuery = graphql`
         title
         thumbnail {
             childImageSharp {
-                fixed(height: 306) {
+                fixed(height: 106) {
                     ...GatsbyImageSharpFixed
                   }
             }

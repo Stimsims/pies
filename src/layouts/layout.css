@@ -1,3 +1,10 @@
+img, embed, object, video {max-width: 100%}
+
+/* 
+a {
+  text-decoration: none;
+  color: grey;
+}
 
 html{
     overflow-x: hidden;
@@ -32,8 +39,8 @@ html{
   animation-iteration-count: infinite;
 
   transform-origin: center top;
-}
-@keyframes wiggle {
+} */
+/* @keyframes wiggle {
     0% {transform: rotate(0deg)}
     10% {transform: rotate(0deg) }
     20% {transform: rotate(-5deg) }
@@ -43,7 +50,7 @@ html{
     60% {transform: rotate(-5deg) }
     70% {transform: rotate(0deg) }
     90% {transform: rotate(0deg) }
-}
+} */
 /* html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;

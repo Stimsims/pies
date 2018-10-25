@@ -89,7 +89,7 @@ export const query = graphql`
     }
     headerImage: file(relativePath: { regex: "/fieldcroptomatoes/" }) {
       childImageSharp{
-          fluid {
+          fluid(sizes: "100vw") {
               ...GatsbyImageSharpFluid
           }
       }

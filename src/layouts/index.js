@@ -7,8 +7,9 @@ import { StaticQuery, graphql } from 'gatsby';
 import styled, {ThemeProvider} from 'styled-components';
 import CookieConsent from "react-cookie-consent";
 
-// import './../components/animations/slides.css';
-// import './../components/animations/fades.css';
+import './../components/animations/slides.css';
+import './../components/animations/fades.css';
+import './../components/icons/icons.css';
 import './../components/styles/text.css';
 import "./layout.css"
 import theme from './theme.js';
@@ -35,7 +36,7 @@ const TemplateWrapper = (props) => {
                 }
               `}
               render={stat => {
-                  console.log(`StaticQuery`, stat);
+                  console.log(`StaticQuery`, props);
                   return(
                     <ThemeProvider theme={theme}>
                         <WebsiteWrapper>
@@ -52,22 +53,21 @@ const TemplateWrapper = (props) => {
                                 buttonText="Okay"
                                 cookieName="gekko-cookie-consent"
                                 style={{ background: "rgba(0,0,0,0.7)",  zIndex: '999999' }}
-                                buttonStyle={{ color: "#4e503b", fontSize: "13px", 
-                                animationName: 'wiggle', animationDuration: '2.5s', animationIterationCount: 'infinite',
-                                animationTimingFunction: 'ease-in-out' }}
+                                buttonStyle={{ color: "#4e503b", fontSize: "13px" }}
                                 expires={150}
                             >
                                 This website uses cookies to enhance its service to you.
                             </CookieConsent>
-                            {/* <Header siteTitle={stat.site.siteMetadata.title} 
+                            <Header siteTitle={stat.site.siteMetadata.title} 
                                         image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
-                                        stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} /> */}
-                                 <Header siteTitle={stat.site.siteMetadata.title} 
-                                        image={stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
+                                        stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
+                                 {/* <Header siteTitle={stat.site.siteMetadata.title} 
+                                        image={stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} /> */}
+
                             <div
                                 style={{
                                 margin: `0 auto`,
-                                maxWidth: 960,
+                                maxWidth: 880,
                                 padding: `0px 1.0875rem 1.45rem`,
                                 paddingTop: '150px',
                                 }}
@@ -85,10 +85,7 @@ const TemplateWrapper = (props) => {
 export default TemplateWrapper
 
 const WebsiteWrapper = styled.div`
-  
-  height: 100vh;
-    width: 100vw;
-    background: red;
+    max-width: 100%;
 `
 /*  overflow-x: hidden;
            {data && data.site && <Header siteTitle={data.site.siteMetadata.title} 

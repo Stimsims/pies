@@ -1,10 +1,8 @@
 import React from 'react';
-import Img from "gatsby-image";
 import styled from 'styled-components';
 import {animationMixIn} from './../components/animations/animation';
 
 const WherePage = (props) => {
-    //console.log(`WherePage props`, props);
     return (
         <div>
             <Title>Where are we?</Title>
@@ -54,12 +52,12 @@ export const query = graphql`
       ...SiteInformation
     }
     headerImage: file(relativePath: { regex: "/restaurant/" }) {
-      childImageSharp {
-          fixed(width: 300, height: 200) {
-              ...GatsbyImageSharpFixed
-          }
+        childImageSharp{
+            fluid(sizes: "100vw") {
+                ...GatsbyImageSharpFluid
+            }
+        }
       }
-    }
     mapImage: file(relativePath: { regex: "/googlestaticmap/" }) {
         childImageSharp {
             fixed(width: 300, height: 187){

@@ -1,10 +1,11 @@
 import React from "react"
 import { graphql } from "gatsby";
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
 import Meta from './../components/social/Meta.jsx';
+import MenuItem from './../components/MenuItem.jsx';
+
 
 /*
         "@type": "MenuItem",
@@ -22,28 +23,28 @@ export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { site, markdownRemark } = data // data.markdownRemark holds our post data
-  const { frontmatter, html } = markdownRemark;
-  console.log(`MenuTemplate data`, data);
+  const { frontmatter} = markdownRemark;
+ // console.log(`MenuTemplate data`, data);
   let allergies = [];
   if(frontmatter.glutenfree) allergies.push('GLUTEN FREE');
   if(frontmatter.dairyfree) allergies.push('DAIRY FREE');
   if(frontmatter.vegan) allergies.push('VEGAN');
   if(frontmatter.nutfree) allergies.push('NUT FREE');
   if(frontmatter.refinedsugarfree) allergies.push('REFINED SUGAR FREE');
-  console.log(`MenuTemplate allergies`, allergies);
-  let schema = { 
-      "@context": "http://schema.org/",
-      "@type": "MenuItem",
-      "name": "pie",
-      "description": "a pie",
-      "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fixed.src,
-      "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
-      "offers": {
-          "@type": "Offer",
-          "price": "9.00",
-          "priceCurrency": "AUD"
-      }
-  }
+ // console.log(`MenuTemplate allergies`, allergies);
+  // let schema = { 
+  //     "@context": "http://schema.org/",
+  //     "@type": "MenuItem",
+  //     "name": "pie",
+  //     "description": "a pie",
+  //     "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fixed.src,
+  //     "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
+  //     "offers": {
+  //         "@type": "Offer",
+  //         "price": "9.00",
+  //         "priceCurrency": "AUD"
+  //     }
+  // }
   return (
     <div>
           <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
@@ -60,24 +61,7 @@ export default function Template({
               })}
             </Allergies>}
         </Heading>
-        <Container>
-          <div className="menu-picture">
-
-            <Img
-                fixed={frontmatter.thumbnail.childImageSharp.fixed}
-                alt={frontmatter.thumbnailAlt}
-                title={frontmatter.title}
-                />
-            
-          </div>
-          <div className="menu-description">
-              <span>
-                <p className="description">{frontmatter.description}</p>
-                <p className="price">${frontmatter.price}</p>  
-              </span>
-              
-          </div>
-        </Container>
+        <MenuItem node={markdownRemark} index={0} details/>
         <Soc><SocialMedia  /></Soc>
         <script type="application/ld+json">{JSON.stringify({ 
               "@context": "http://schema.org/",
@@ -109,10 +93,10 @@ export const pageQuery = graphql`
     }
     headerImage: file(relativePath: { regex: "/boardplate/" }) {
       childImageSharp{
-          fixed(width: 300){
-              ...GatsbyImageSharpFixed
-          }
-      }
+        fluid(sizes: "100vw") {
+            ...GatsbyImageSharpFluid
+        }
+    }
     }
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
@@ -160,55 +144,7 @@ const Heading = styled.div`
     padding: 3px;
   }
 `
-const Container = styled.div`
-  display: flex;
-  width: 100%; height: 100%;
-  padding: 10px 0px;
-  flex-direction: column;
 
-  .menu-picture{
-    flex: none;
-    text-align: center;
-    h1, p, hr{ text-align: center; margin: 0;}
-    h1{padding: 3px;}
-  }
-  .menu-description{
-    flex: none;
-    padding-top: 10px;
-    display: flex; flex-direction: column; 
-    position: relative;
-    animation-name: slideDown;
-    opacity: 0;
-    transform: translate(0%, -100%);
-    ${props => {
-      return animationMixIn('1', '0.5', 'forwards', 'ease-out');
-    }}
-    span{
-      width: 100%;  position: relative;
-      p{text-align: center; margin: 0; padding: 10px;}
-    }
-    .description {
-      position: static; 
-    }
-    .price{
-      font-size: 1.4em;
-      text-decoration: underline;
-    }
-  }
-
-  @media only screen and (min-width: ${props => props.theme.mediaMinWidth}) {
-    flex-direction: row;
-    .menu-picture, .menu-description{ flex: 1}
-    .menu-description{
-      animation-name: slideLeft;
-      transform: translate(100%, 0%);
-    }
-    .menu-description span{
-      top: 50%; 
-      transform: translateY(-50%);
-    }
-  }
-`
 const Allergies = styled.div`
   display: flex; width: 100%;
   flex-direction: row; flex-wrap: wrap;

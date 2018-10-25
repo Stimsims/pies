@@ -8,12 +8,18 @@ const WherePage = (props) => {
             <Title>Where are we?</Title>
             <Contact>
                 <div className="phone">
-                    <Label>Phone</Label>
+                    <div>
+                    <p className="label">Phone</p>
                     <p>232-2323-232</p>
+                    </div>
+
                 </div>
                 <div className="email">
-                    <Label>E-mail</Label>
-                    <p>gekko@gmaik.com</p>
+                    <div>
+                        <p className="label">E-mail</p>
+                        <p>gekko@gmaik.com</p>
+                    </div>
+
                 </div>
             </Contact>
             <Map>
@@ -101,6 +107,15 @@ const Contact = styled.div`
       box-shadow: 0px 1px 1px 0px;
       padding-top: 23px;
       margin: 10px;
+      position: relative;
+      div{
+            .label{font-weight: bold;}
+          p{
+              text-align: center;
+              fint-size: 1.2em;
+              margin: 0;
+            }
+      }
   }
   .phone{
     animation-name: slideRight;

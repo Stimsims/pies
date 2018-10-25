@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Img from "gatsby-image";
+import {animationMixIn} from './animations/animation.js';
 //import './transition.css';
 
 class Header extends React.Component{
@@ -9,10 +10,18 @@ class Header extends React.Component{
     super(props);
     this.state = {
       open:true,
-      image: props.image.src
+      image: props.image.src,
+      toggle: false
     }
   }
-
+  componentDidUpdate(prevProps, prevState){
+    if(this.props.image.src !== this.state.image){
+      this.setState({
+        image: this.props.image.src,
+        toggle: !this.state.toggle
+      })
+    }
+  }
   render(){
    
         let image = this.props.image;
@@ -28,15 +37,17 @@ class Header extends React.Component{
       <Banner>
         <Img
             fluid={image}
+            className={`${this.state.toggle? 'headerA':'headerB'}`}
             title={`Header image of restaurant`}
+            alt={`Header image of restaurant`}
             style={{height: '200px', position: 'relative', width: '100%'}}
             />
         <Heading>
-          <h1 className="insetshadow">Gekko</h1>
+          <h2 className="insetshadow">Gekko</h2>
           <Menu>
             {links.map(e=> {
-              return <Link key={e.to} to={e.to} activeClassName="active" >
-                <p className="menu-link">{e.text}</p>
+              return <Link key={e.to} to={e.to} activeClassName="active" className="menu-link">
+                <p >{e.text}</p>
               </Link>
             })}
           </Menu>
@@ -48,13 +59,26 @@ class Header extends React.Component{
 
 export default Header;
 const Banner = styled.div`
-  width: 100%; height: 200px; position: relative; z-index: 9999; background-color: green;
+  width: 100%; height: 200px; position: relative; z-index: 9999; 
+  background-color: white;
+  .headerA, .headerB{
+    ${animationMixIn('1', '0', 'forward', 'ease', '1')}
+    animation-name: bannerfade;
+  }
+  @keyframes bannerfade{
+    0%{
+      opacity: 0;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
 `
 
 const Menu = styled.div`
   display: flex;
   width: 100%;
-  a{
+  .menu-link{
     flex: 1;
     display: inline-block;
     text-align: center;
@@ -78,20 +102,20 @@ const Menu = styled.div`
       color: white;
     }
   }
-  a:hover, a.active{
+  .menu-link:hover, .menu-link.active{
     background-color: ${props => {return props.theme.neutralDarkL}};
   }
-  a:active{
+  .menu-link:active{
     transition: all 0s ease;
     background-color: black;
   }
-  a:nth-child(2){
+  .menu-link:nth-child(2){
     animation-delay: 2.5s;
   }
-  a:nth-child(3){
+  .menu-link:nth-child(3){
     animation-delay: 3s;
   }
-  a:last-child{
+  .menu-link:last-child{
     animation-delay: 3.5s;
   }
   @keyframes drop {
@@ -116,7 +140,7 @@ const Heading = styled.div`
   animation-name: example;
   animation-duration: 2s;
   animation-timing-function: ease-in;
-  h1{
+  h2{
     line-height: 100px;
     text-align: center;
     margin: 0;

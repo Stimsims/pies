@@ -4,47 +4,16 @@ import styled from 'styled-components';
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
 import Meta from './../components/social/Meta.jsx';
-import MenuItem from './../components/MenuItem.jsx';
+import Img from 'gatsby-image';
+import {allergies} from './../components/utils/utilities.js';
 
-
-/*
-        "@type": "MenuItem",
-        "name": item.frontmatter.title,
-        "description": item.frontmatter.description,
-        "image": "https://goofy-archimedes-763914.netlify.com" + item.frontmatter.path,
-        "suitableForDiet": [item.frontmatter.glutenfree?"http://schema.org/GlutenFreeDiet":null],
-        "offers": {
-            "@type": "Offer",
-                    "price": item.frontmatter.price,
-                    "priceCurrency": "AUD"
-        }
-*/
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
   const { site, markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter} = markdownRemark;
- // console.log(`MenuTemplate data`, data);
-  let allergies = [];
-  if(frontmatter.glutenfree) allergies.push('GLUTEN FREE');
-  if(frontmatter.dairyfree) allergies.push('DAIRY FREE');
-  if(frontmatter.vegan) allergies.push('VEGAN');
-  if(frontmatter.nutfree) allergies.push('NUT FREE');
-  if(frontmatter.refinedsugarfree) allergies.push('REFINED SUGAR FREE');
- // console.log(`MenuTemplate allergies`, allergies);
-  // let schema = { 
-  //     "@context": "http://schema.org/",
-  //     "@type": "MenuItem",
-  //     "name": "pie",
-  //     "description": "a pie",
-  //     "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fixed.src,
-  //     "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
-  //     "offers": {
-  //         "@type": "Offer",
-  //         "price": "9.00",
-  //         "priceCurrency": "AUD"
-  //     }
-  // }
+  let aller = allergies(frontmatter.glutenfree, frontmatter.dairyfree, frontmatter.vegan,
+    frontmatter.nutfree, frontmatter.refinedsugarfree);
   return (
     <div>
           <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
@@ -55,13 +24,16 @@ export default function Template({
         <Heading>
            <h1>{frontmatter.title}</h1>
             <hr />
-            {allergies.length > 0 && <Allergies>
-              {allergies.map((e, i) => {
-                return <p>{e}</p>
-              })}
-            </Allergies>}
+            {allergies.length > 0 && <Allergies><h4>{aller}</h4></Allergies>}
         </Heading>
-        <MenuItem node={markdownRemark} index={0} details/>
+        <Article>
+          <Img
+            fixed={frontmatter.thumbnail.childImageSharp.fixed}
+            title={frontmatter.thumbnailAlt}
+            alt={frontmatter.thumbnailAlt}
+            />
+          <p>{frontmatter.description}</p>
+        </Article>
         <Soc><SocialMedia  /></Soc>
         <script type="application/ld+json">{JSON.stringify({ 
               "@context": "http://schema.org/",
@@ -80,11 +52,6 @@ export default function Template({
     
   )
 }
-
-/*
-
-*/
-
 
 export const pageQuery = graphql`
   query MenuTemplate($path: String!) {
@@ -144,14 +111,27 @@ const Heading = styled.div`
     padding: 3px;
   }
 `
-
+const Article = styled.div`
+  width: 100%;
+  min-height: 200px;
+  p{
+    display: inline;
+    width: 50%;
+  }
+  .gatsby-image-wrapper{
+    float: left !important;
+    margin: 5px 10px 0px 20px;
+  }
+`
 const Allergies = styled.div`
   display: flex; width: 100%;
   flex-direction: row; flex-wrap: wrap;
-  p{ 
+  padding 10px 0px;
+  h4{ 
     display: inline; padding: 0px 7px; margin: 0;
     font-size: 0.8em; color: grey;
     text-align: center; 
+    text-transform: uppercase;
     flex-grow: 1;
     animation-name: slideDown;
     opacity: 0; transform: translateY(-100%);

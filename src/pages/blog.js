@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components';
 import {animationMixIn} from './../components/animations/animation';
+import MenuItem from './../components/MenuItem.jsx';
 //import PageTransition from 'gatsby-plugin-page-transitions';
 
 
@@ -23,17 +24,14 @@ const SecondPage = ({
   .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
   return (
     <div>
-      <Title>Updates</Title>
+      <Title>Blog</Title>
       <List>
         {edges.map(({node}, i) => {
-         // console.log(`blog item `, node);
-          return <Link key={node.id} to={node.frontmatter.path}><Item>
-            <div>
-              <h3 className="blog-title">{node.frontmatter.title}</h3>
-              <h5 className="blog-date">{node.frontmatter.date}</h5>
-            </div>
-            <p className="blog-desc">description</p>
-          </Item></Link>
+          console.log(`blog item `, node);
+          return           <MenuItem path={node.frontmatter.path} index={i}
+          title={node.frontmatter.title} subtitle={node.frontmatter.date}
+          image={node.frontmatter.thumbnail.childImageSharp.fixed}
+          alt={node.frontmatter.thumbnailAlt} />
         })}
       </List>
     </div>
@@ -109,9 +107,9 @@ export const query = graphql`
             description
             thumbnail {
               childImageSharp {
-                  fluid(maxWidth: 300) {
-                      ...GatsbyImageSharpFluid
-                  }
+                fixed(width: 300, height: 187) {
+                  ...GatsbyImageSharpFixed
+                }
               }
             }
             thumbnailAlt

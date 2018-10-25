@@ -8,6 +8,7 @@ import Sales from './../components/Sales.jsx';
 import { Link } from 'gatsby';
 import Meta from './../components/social/Meta.jsx';
 import MenuItem from './../components/MenuItem.jsx';
+import {allergies} from './../components/utils/utilities.js';
 
 
 const IndexPage = (props) => {
@@ -26,12 +27,16 @@ const IndexPage = (props) => {
         <Sales  />
         <Menu>
           {props.data.allMarkdownRemark.edges.map((n, i) => {
-            console.log(`Index page menuItem `, n);
+                console.log(`Index page menuItem `, n);
+                let aller = allergies(n.node.frontmatter.glutenfree, false);
                 return (
                   <div key={n.node.frontmatter.path} >
                     <hr />
-                    <MenuItem node={n.node} index={i} />
-            
+                    <MenuItem node={n.node} index={i} 
+                    path={n.node.frontmatter.path}
+                    image={n.node.frontmatter.thumbnail.childImageSharp.fixed} 
+                    alt={n.node.frontmatter.thumbnailAlt}
+                    title={n.node.frontmatter.title} subtitle={aller} />
                   </div>
                 )
           })}

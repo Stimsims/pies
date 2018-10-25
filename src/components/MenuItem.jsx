@@ -10,50 +10,25 @@ export default class MenuItem extends React.Component{
         console.log(`MenuItem props`, this.props);
         let {node, index} = this.props;
         return (       
-        // <Item index={index}>
-
-        //     <div className="item-image">
-        //     <Img
-        //                 fixed={node.frontmatter.thumbnail.childImageSharp.fixed}
-        //                 title={node.frontmatter.thumbnailAlt}
-        //                 alt={node.frontmatter.thumbnailAlt}
-        //                 index={index}
-        //                 style={{width: '300px', height: '187px'}}
-        //                 className={index%2===0?'imgleft':'imgright'}
-        //                 />
-        //     </div>
-         
-        //   <p className={`textbox ${index%2===0?'textleft':'textright'}`}>
-        //     <p>{node.frontmatter.description}
-        //     {node.frontmatter.description}
-        //     {node.frontmatter.description}
-        //     {node.frontmatter.description}
-        //     {node.frontmatter.description}
-        //     {node.frontmatter.description}
-        //     </p>
-
-        //   </p>
-          
-        // </Item>
-                <Link to={node.frontmatter.path} style={{textDecoration: 'none', color: 'black', margin: '20px 10px'}}>
-                    <Container>
+                <Link to={this.props.path} style={{textDecoration: 'none', color: 'black', margin: '20px 10px'}}>
+                    <Container index={this.props.index}>
 
                         <div className="box">                                    
                             <Img
-                                    fixed={node.frontmatter.thumbnail.childImageSharp.fixed}
-                                    title={node.frontmatter.thumbnailAlt}
-                                    alt={node.frontmatter.thumbnailAlt}
+                                    fixed={this.props.image}
+                                    title={this.props.title}
+                                    alt={this.props.alt}
                                     index={index}
                                     />
                         </div>
                         <div className="title">
                             <div>
-                                <h2>{node.frontmatter.title}</h2>
-                                <p>{node.frontmatter.date}</p>
+                                <h2>{this.props.title}</h2>
+                                <h4>{this.props.subtitle}</h4>
                             </div>
                         </div>
                         {this.props.details && <div className="c2"> 
-                            <p id="menutext">{node.frontmatter.description}</p>
+                            <p id="menutext">{this.props.details}</p>
                         </div>}
                     </Container>
                 </Link>
@@ -85,9 +60,8 @@ const Container = styled.div`
   }
   
   .title{
-    order: 1; 
+    order: 1;
     width: 100%;
-
     position: relative;
       div{
         position: relative;
@@ -95,6 +69,10 @@ const Container = styled.div`
         transform: translateY(-50%);
         text-align: center;
         width: 100%;
+        h2, h4{
+            margin-bottom: 15px;
+            margin-top: 0px;
+        }
       }
   }
   .c2{
@@ -106,7 +84,14 @@ const Container = styled.div`
       margin-right: auto;
   }
   @media screen and (min-width: 700px){
-      .title{width: 50%; flex-grow: 1;}
+      .box{
+        ${props => {
+            console.log(`MenuItem Container props`, props);
+            return props.index % 2 === 0? 'order:0; margin-left: 10px;':'order:1; margin-right: 10px;'}}
+      }
+      .title{width: 50%; flex-grow: 1;
+        ${props => {return props.index % 2 === 0? 'order:1;':'order:0;'}}
+        }
       .c2{width: 100%;}
   }
 

@@ -2,8 +2,10 @@ const path = require(`path`);
 //  'gatsby-plugin-page-transitions',
 module.exports = {
   siteMetadata: {
-    title: 'Gekko',
-    siteRoot: 'https://goofy-archimedes-763914.netlify.com'
+    title: 'Gekko Restaurant',
+    siteRoot: 'https://goofy-archimedes-763914.netlify.com',
+    siteUrl: 'https://goofy-archimedes-763914.netlify.com',
+    description: 'The Gekko restaurant serves Indian Japanese fusion food'
   },
   plugins: [
     {
@@ -84,15 +86,16 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'Gekko Restaurant',
+        short_name: 'Gekko',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#ff0066',
+        theme_color: '#ff0066',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'src/images/gecko-icon.png', // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-sitemap`,
     'gatsby-plugin-offline',
     'gatsby-plugin-netlify'
   ],

@@ -17,6 +17,7 @@
     "gatsby-plugin-page-transitions": "^1.0.7",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.0.6",
+    "gatsby-plugin-sitemap": "^2.0.1",
     "gatsby-plugin-styled-components": "^3.0.0",
     "gatsby-plugin-typography": "^2.2.0",
     "gatsby-remark-copy-linked-files": "^2.0.5",
@@ -42,6 +43,8 @@
     "typeface-merriweather": "0.0.54",
     "typography": "^0.16.17",
     "typography-theme-grand-view": "^0.15.10",
+    "typography-theme-kirkham": "^0.16.3",
+    "typography-theme-st-annes": "^0.15.10",
     "typography-theme-stern-grove": "^0.15.10"
   },
   "keywords": [

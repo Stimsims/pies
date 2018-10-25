@@ -16,15 +16,13 @@ import theme from './theme.js';
 
 const TemplateWrapper = (props) => {
     let { children, location, data} = props;
-    console.log(`TemplateWrapper data`, props);
+   // console.log(`TemplateWrapper data`, props);
     return (
         <StaticQuery
               query={graphql`
                 query LayoutStaticQuery {
                     site {
-                        siteMetadata {
-                          title
-                        }
+                        ...SiteInformation
                       }
                       headerImage: file(relativePath: { regex: "/restaurant/" }) {
                         childImageSharp  {
@@ -36,12 +34,12 @@ const TemplateWrapper = (props) => {
                 }
               `}
               render={stat => {
-                  console.log(`StaticQuery`, props);
+                  console.log(`StaticQuery`, stat);
                   return(
                     <ThemeProvider theme={theme}>
                         <WebsiteWrapper>
                             <Helmet
-                                title="Gatsby Default Starter"
+                                title={stat.site.siteMetadata.title}
                                 meta={[
                                 { name: `description`, content: `Sample` },
                                 { name: `keywords`, content: `sample, something` }

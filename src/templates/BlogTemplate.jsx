@@ -31,7 +31,8 @@ export default function Template({
   )
 }
 const Container = styled.div`
-  h1, h5{text-align: center;}
+  
+  h1, h5{text-align: center; margin-top: 0px;}
   hr{margin-bottom: 5px;}
 `
 const Markdown = styled.div`

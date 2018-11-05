@@ -51,7 +51,7 @@ const IndexPage = (props) => {
 export default IndexPage;
 const Title = styled.h1`
   text-align: center;
-  margin: 20px 0px 10px 0px;
+  margin: 0px 0px 10px 0px;
   opacity: 0;
   animation-name: slideDown;
   ${props => {

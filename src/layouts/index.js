@@ -84,6 +84,7 @@ export default TemplateWrapper
 
 const WebsiteWrapper = styled.div`
     max-width: 100%;
+    background-color: red;
 `
 /*  overflow-x: hidden;
            {data && data.site && <Header siteTitle={data.site.siteMetadata.title} 

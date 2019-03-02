@@ -3,9 +3,12 @@ const path = require(`path`);
 module.exports = {
   siteMetadata: {
     title: 'Gekko Restaurant',
+    titleTemplate: "%s · The Real Hero",
     siteRoot: 'https://goofy-archimedes-763914.netlify.com',
     siteUrl: 'https://goofy-archimedes-763914.netlify.com',
-    description: 'The Gekko restaurant serves Indian Japanese fusion food'
+    description: 'The Gekko restaurant serves Indian Japanese fusion food',
+    image: "/images/pecan.jpg", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@occlumency",
   },
   plugins: [
     {

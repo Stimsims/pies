@@ -6,6 +6,7 @@ import Header from './../components/header.js';
 import { StaticQuery, graphql } from 'gatsby';
 import styled, {ThemeProvider} from 'styled-components';
 import CookieConsent from "react-cookie-consent";
+import SEO from './../components/social/SEO.js';
 
 import './../components/animations/slides.css';
 import './../components/animations/fades.css';
@@ -59,6 +60,7 @@ const TemplateWrapper = (props) => {
                             <Header siteTitle={stat.site.siteMetadata.title} 
                                         image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
                                         stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
+                            <SEO />
                                  {/* <Header siteTitle={stat.site.siteMetadata.title} 
                                         image={stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} /> */}
 

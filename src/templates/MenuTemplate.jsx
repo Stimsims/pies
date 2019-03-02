@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 import styled from 'styled-components';
 import {animationMixIn} from './../components/animations/animation';
 import SocialMedia from '../components/social/SocialMedia';
-import Meta from './../components/social/Meta.jsx';
+//import Meta from './../components/social/Meta.jsx';
 import Img from 'gatsby-image';
 import {allergies} from './../components/utils/utilities.js';
 
@@ -16,11 +16,11 @@ export default function Template({
     frontmatter.nutfree, frontmatter.refinedsugarfree);
   return (
     <div>
-          <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
+          {/* <Meta title={frontmatter.title} description={'on the menu: ' + frontmatter.description}
               image={site.siteMetadata.siteRoot + frontmatter.thumbnail.childImageSharp.fixed.src} 
               imageAlt={frontmatter.thumbnailAlt}
               type="restaurant.menu_section" twitterCard="summary"
-               />
+               /> */}
         <Heading>
            <h1>{frontmatter.title}</h1>
             <hr />
@@ -35,7 +35,7 @@ export default function Template({
           <p>{frontmatter.description}</p>
         </Article>
         <Soc><SocialMedia  /></Soc>
-        <script type="application/ld+json">{JSON.stringify({ 
+        {/* <script type="application/ld+json">{JSON.stringify({ 
               "@context": "http://schema.org/",
               "@type": "MenuItem",
               "name": "pie",
@@ -47,7 +47,21 @@ export default function Template({
                   "price": "9.00",
                   "priceCurrency": "AUD"
               }
-          })}</script>
+          })}</script> */}
+          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: 
+              JSON.stringify({ 
+                "@context": "http://schema.org/",
+                "@type": "MenuItem",
+                "name": "pie",
+                "description": "a pie",
+                "image": "https://goofy-archimedes-763914.netlify.com" + frontmatter.thumbnail.childImageSharp.fixed.src,
+                "suitableForDiet": ["http://schema.org/GlutenFreeDiet"],
+                "offers": {
+                    "@type": "Offer",
+                    "price": "9.00",
+                    "priceCurrency": "AUD"
+                }
+            })}}/>
     </div>
     
   )

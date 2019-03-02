@@ -6,21 +6,20 @@ import SocialMedia from '../components/social/SocialMedia';
 import {getGoogleArticle, getGoogleRestaurant} from './../components/social/GoogleData';
 import Sales from './../components/Sales.jsx';
 import { Link } from 'gatsby';
-import Meta from './../components/social/Meta.jsx';
+//import Meta from './../components/social/Meta.jsx';
 import MenuItem from './../components/MenuItem.jsx';
 import {allergies} from './../components/utils/utilities.js';
 
 
 const IndexPage = (props) => {
-    console.log(`IndexPage props `, props);
   return (
       <div>
-        <Meta title={props.data.site.siteMetadata.title} description="Gekko is a restaurant, here is its menu"
+        {/* <Meta title={props.data.site.siteMetadata.title} description="Gekko is a restaurant, here is its menu"
               image={props.data.site.siteMetadata.siteRoot + props.data.headerImage.childImageSharp.fluid.src} 
               imageAlt={"Gekko is a restaurant, here is its menu"}
               type="restaurant.menu" twitterCard="summary"
               other={[{property: 'restaurant:menu', content:'Gekko Menu'}]}
-               />
+               /> */}
         <Title>What's on the Menu?</Title>
         <SocialMedia url={props.location.href} />
        
@@ -41,7 +40,8 @@ const IndexPage = (props) => {
                 )
           })}
         </Menu>
-        <script type="application/ld+json">{JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges))}</script>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: 
+          JSON.stringify(getGoogleRestaurant(props.data.allMarkdownRemark.edges))}}/>
       </div>
     
 

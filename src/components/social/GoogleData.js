@@ -4,7 +4,7 @@ export const getGoogleArticle = (title, img, alt) => {
             "@type": "Article",
             "name": title,
             "headline": "aricle headline",
-            "author": "Elaine Smith",
+            "author": "Page V",
             "publisher": {
                 "@type": "Organization",
                 "email": "test@gmail.com",

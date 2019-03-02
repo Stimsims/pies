@@ -3,12 +3,17 @@ import { graphql } from "gatsby"
 import Img from "gatsby-image";
 import styled from 'styled-components';
 import Social from './../components/social/SocialMedia.js';
+import {getGoogleArticle, getGoogleRestaurant} from './../components/social/GoogleData';
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
+ // console.log(`BlogTemplate data`, data);
   const { markdownRemark } = data // data.markdownRemark holds our post data
   const { frontmatter, html } = markdownRemark;
+  // console.log(`BlogTemplate frontmatter`, JSON.stringify(getGoogleArticle(frontmatter.title, 
+  //   frontmatter.thumbnail.childImageSharp.fixed, frontmatter.thumbnailAlt)));
+  //debugger;  (title, img, alt)
   return (
     <Container className="blog-post-container">
         <h1>{frontmatter.title}</h1>
@@ -24,6 +29,9 @@ export default function Template({
             <div className="blog-content"
               dangerouslySetInnerHTML={{ __html: html }}
               />
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: 
+              JSON.stringify(getGoogleArticle(frontmatter.title, 
+              frontmatter.thumbnail.childImageSharp.fixed, frontmatter.thumbnailAlt))}}/>
           </div>
         </Markdown>
         <Social />

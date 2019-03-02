@@ -26,6 +26,7 @@ export default class HTML extends React.Component {
           />
           {this.props.postBodyComponents}
           {/* checking if this makes netlify work */}
+          <noscript>Please enable javascript.</noscript>
           <script
             key={`netscript`}
             dangerouslySetInnerHTML={{ __html: `

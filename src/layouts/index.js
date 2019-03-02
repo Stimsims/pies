@@ -61,9 +61,6 @@ const TemplateWrapper = (props) => {
                                         image={data && data.headerImage? data.headerImage.childImageSharp.fluid:
                                         stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} />
                             <SEO />
-                                 {/* <Header siteTitle={stat.site.siteMetadata.title} 
-                                        image={stat.headerImage.childImageSharp?stat.headerImage.childImageSharp.fluid:null} /> */}
-
                             <div
                                 style={{
                                 margin: `0 auto`,
